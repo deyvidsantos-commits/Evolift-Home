@@ -3,30 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EvoLift — Privacidade e Conta</title>
+<title>EvoLift — Evolua todos os dias</title>
+<meta name="description" content="EvoLift é um app de treino offline-first: seus dados ficam no aparelho, conta na nuvem é opcional.">
 <meta name="robots" content="index,follow">
 <style>
   :root {
     --bg: #fbfaf7;
     --surface: #ffffff;
+    --surface-2: #f2f0e9;
     --text: #1c1f16;
     --muted: #5b6152;
     --border: #e4e1d6;
     --accent: #4f8f14;
+    --accent-strong: #3f7310;
     --accent-bg: #eef7e2;
+    --hero-bg: #1b1d21;
+    --hero-text: #f4f5f0;
+    --hero-muted: #a3aa93;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #14160f;
       --surface: #1b1e15;
+      --surface-2: #20231a;
       --text: #ecefe3;
       --muted: #a3aa93;
       --border: #2c3023;
       --accent: #9ee14f;
+      --accent-strong: #b6f06c;
       --accent-bg: #232c17;
+      --hero-bg: #0e0f0b;
+      --hero-text: #f4f5f0;
+      --hero-muted: #8b9280;
     }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
@@ -34,17 +46,24 @@
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
   }
-  .wrap {
-    max-width: 640px;
+  a { color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Nav */
+  nav.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 4rem 1.5rem 5rem;
   }
   .brand {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     letter-spacing: -0.02em;
     text-decoration: none;
     color: var(--text);
@@ -56,62 +75,287 @@
     background: var(--accent);
     display: inline-block;
   }
-  h1 {
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  .nav-links a { text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero {
+    background: var(--hero-bg);
+    color: var(--hero-text);
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem 1.5rem 4.5rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  @media (max-width: 760px) {
+    .hero-inner { grid-template-columns: 1fr; padding-bottom: 3rem; }
+  }
+  .eyebrow {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 0 0 1rem;
+  }
+  .hero p.lede {
+    color: var(--hero-muted);
+    font-size: 1.15rem;
+    max-width: 34ch;
+    margin: 0 0 1.75rem;
+  }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: var(--hero-muted);
+  }
+  .status-pill .pulse {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Phone mockup */
+  .phone {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1080 / 2400;
+    margin: 0 auto;
+    border-radius: 2.4rem;
+    background: #0a0b08;
+    padding: 0.5rem;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+  }
+  .phone::before {
+    content: "";
+    position: absolute;
+    top: 0.85rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34%;
+    height: 1.1rem;
+    background: #0a0b08;
+    border-radius: 999px;
+    z-index: 2;
+  }
+  .phone img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 1.9rem;
+    object-fit: cover;
+  }
+  .hero .phone { max-width: 300px; }
+
+  /* Sections */
+  section { padding: 4rem 0; }
+  h2 {
     font-size: 1.9rem;
     letter-spacing: -0.02em;
-    margin: 2rem 0 0.5rem;
+    margin: 0 0 0.5rem;
   }
-  p.lede {
+  .section-lede {
     color: var(--muted);
-    font-size: 1.05rem;
-    margin-top: 0;
+    max-width: 46ch;
+    margin: 0 0 2.5rem;
   }
-  .cards {
+
+  /* Features */
+  .features {
     display: grid;
-    gap: 0.9rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
   }
-  a.card {
-    display: block;
-    padding: 1.1rem 1.25rem;
-    border: 1px solid var(--border);
-    border-radius: 14px;
+  @media (max-width: 640px) {
+    .features { grid-template-columns: 1fr; }
+  }
+  .feature {
     background: var(--surface);
-    text-decoration: none;
-    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
   }
-  a.card strong {
-    display: block;
+  .feature .icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 10px;
+    background: var(--accent-bg);
+    color: var(--accent-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 0.9rem;
+  }
+  .feature h3 {
     font-size: 1.05rem;
-    margin-bottom: 0.2rem;
+    margin: 0 0 0.4rem;
   }
-  a.card span {
+  .feature p {
     color: var(--muted);
-    font-size: 0.92rem;
+    font-size: 0.95rem;
+    margin: 0;
   }
+
+  /* Screenshot gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 820px) {
+    .gallery {
+      grid-template-columns: repeat(4, 200px);
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+    }
+    .gallery > div { scroll-snap-align: start; }
+  }
+  .gallery figure { margin: 0; text-align: center; }
+  .gallery figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* Footer */
   footer {
-    margin-top: 3rem;
-    color: var(--muted);
-    font-size: 0.85rem;
+    background: var(--surface-2);
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0;
   }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footer-links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+  .footer-links a { text-decoration: none; color: var(--muted); }
+  .footer-links a:hover { color: var(--text); }
+  .footer-fine { color: var(--muted); font-size: 0.85rem; }
 </style>
 </head>
 <body>
-  <div class="wrap">
+
+  <nav class="top">
     <a class="brand" href="./"><span class="dot"></span>EvoLift</a>
-    <h1>Privacidade e sua conta</h1>
-    <p class="lede">Páginas públicas de referência para o aplicativo EvoLift.</p>
-    <div class="cards">
-      <a class="card" href="privacy/">
-        <strong>Política de Privacidade</strong>
-        <span>O que o EvoLift coleta, como usa e onde seus dados ficam.</span>
-      </a>
-      <a class="card" href="delete-account/">
-        <strong>Excluir conta e dados</strong>
-        <span>Como pedir a exclusão permanente da sua conta e dos seus dados na nuvem.</span>
-      </a>
+    <div class="nav-links">
+      <a href="#recursos">Recursos</a>
+      <a href="#capturas">Capturas de tela</a>
+      <a href="privacy/">Privacidade</a>
     </div>
-    <footer>EvoLift · mantido por Deyvid Santos</footer>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">App de treino offline-first</span>
+        <h1>Evolua todos os dias.</h1>
+        <p class="lede">Treinos, histórico e evolução no seu controle. O EvoLift funciona
+        inteiro offline — conta na nuvem é só se você quiser.</p>
+        <span class="status-pill"><span class="pulse"></span>Em teste fechado no Google Play</span>
+      </div>
+      <div class="phone">
+        <img src="assets/screenshots/home.svg" alt="Captura de tela da Início do EvoLift (placeholder)">
+      </div>
+    </div>
   </div>
+
+  <div class="container">
+    <section id="recursos">
+      <h2>Como o EvoLift funciona</h2>
+      <p class="section-lede">Construído para quem treina de verdade: registro rápido, dados
+      que não somem e nada obrigando você a ficar online.</p>
+      <div class="features">
+        <div class="feature">
+          <div class="icon">📴</div>
+          <h3>Funciona offline</h3>
+          <p>Treinos, histórico e progresso ficam salvos no seu aparelho, sem depender de
+          internet para nada do dia a dia.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🏋️</div>
+          <h3>Equipamento sob controle</h3>
+          <p>Cadastre o que você tem disponível no seu espaço de treino e o EvoLift avisa
+          quando um exercício não é compatível.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📈</div>
+          <h3>Evolução de verdade</h3>
+          <p>Acompanhe cargas, recordes pessoais e o histórico completo de cada treino que
+          você já fez.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">☁️</div>
+          <h3>Conta é opcional</h3>
+          <p>Quer sincronizar entre aparelhos? Crie uma conta quando quiser. Sem conta, o
+          app funciona igual.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="capturas">
+      <h2>Capturas de tela</h2>
+      <p class="section-lede">Prints reais do aplicativo em uso.</p>
+      <div class="gallery">
+        <figure>
+          <div class="phone"><img src="assets/screenshots/home.svg" alt="Captura de tela da Início (placeholder)"></div>
+          <figcaption>Início</figcaption>
+        </figure>
+        <figure>
+          <div class="phone"><img src="assets/screenshots/workouts.svg" alt="Captura de tela de Treinos (placeholder)"></div>
+          <figcaption>Treinos</figcaption>
+        </figure>
+        <figure>
+          <div class="phone"><img src="assets/screenshots/exercises.svg" alt="Captura de tela de Exercícios (placeholder)"></div>
+          <figcaption>Exercícios</figcaption>
+        </figure>
+        <figure>
+          <div class="phone"><img src="assets/screenshots/progress.svg" alt="Captura de tela de Evolução (placeholder)"></div>
+          <figcaption>Evolução</figcaption>
+        </figure>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-fine">EvoLift · mantido por Deyvid Santos</div>
+      <div class="footer-links">
+        <a href="privacy/">Política de Privacidade</a>
+        <a href="delete-account/">Excluir conta e dados</a>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>

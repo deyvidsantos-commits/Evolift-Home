@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 2400" width="1080" height="2400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B1D21"/>
+      <stop offset="1" stop-color="#2D3138"/>
+    </linearGradient>
+    <pattern id="stripes" width="120" height="120" patternTransform="rotate(-20)" patternUnits="userSpaceOnUse">
+      <rect width="120" height="120" fill="none"/>
+      <rect width="18" height="120" fill="#7BCB28" opacity="0.10"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="2400" fill="url(#bg)"/>
+  <rect width="1080" height="2400" fill="url(#stripes)"/>
+  <circle cx="540" cy="980" r="150" fill="#7BCB28"/>
+  <text x="540" y="1005" font-family="Arial, sans-serif" font-size="90" font-weight="700" fill="#1B1D21" text-anchor="middle">03</text>
+  <text x="540" y="1220" font-family="Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" text-anchor="middle">Exercícios</text>
+  <text x="540" y="1290" font-family="Arial, sans-serif" font-size="34" fill="#C1C6CE" text-anchor="middle">captura de tela — substituir por print real</text>
+  <text x="540" y="2300" font-family="Arial, sans-serif" font-size="28" fill="#73777F" text-anchor="middle">assets/screenshots/exercises.svg · 1080 × 2400</text>
+</svg>
