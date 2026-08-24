@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidade — EvoLift</title>
+<meta name="robots" content="index,follow">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --text: #1c1f16;
+    --muted: #5b6152;
+    --border: #e4e1d6;
+    --accent: #4f8f14;
+    --accent-bg: #eef7e2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14160f;
+      --surface: #1b1e15;
+      --text: #ecefe3;
+      --muted: #a3aa93;
+      --border: #2c3023;
+      --accent: #9ee14f;
+      --accent-bg: #232c17;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .brand .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+  h1 {
+    font-size: 1.85rem;
+    letter-spacing: -0.02em;
+    margin: 1.75rem 0 0.35rem;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin: 2.2rem 0 0.6rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border);
+  }
+  p, li { color: var(--text); }
+  p.muted, li.muted { color: var(--muted); }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: 0.4rem; }
+  .callout {
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    font-size: 0.95rem;
+    margin: 1.5rem 0;
+  }
+  a { color: var(--accent); }
+  code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.05rem 0.35rem;
+    font-size: 0.9em;
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="brand" href="../"><span class="dot"></span>EvoLift</a>
+    <h1>Política de Privacidade</h1>
+    <p class="meta">Última atualização: 24 de agosto de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
+
+    <p>Esta política descreve, de forma factual, o que o EvoLift coleta, como
+    usa e onde seus dados ficam armazenados. O responsável pelo tratamento
+    de dados descrito aqui é <strong>Deyvid Santos</strong>, desenvolvedor
+    independente do EvoLift.</p>
+
+    <h2>Funcionamento local, por padrão</h2>
+    <p>O EvoLift funciona localmente e offline por padrão, sem exigir conta.
+    Treinos, templates, sessões, histórico, preferências, Espaços de Treino,
+    metas, conquistas, evolução e dados corporais ficam armazenados apenas
+    no seu dispositivo, em um banco de dados local. Nenhum desses dados
+    exige conta ou conexão para ser criado, visto ou editado.</p>
+    <p>O EvoLift não usa analytics, rastreadores de publicidade ou serviços
+    de terceiros para relatório de falhas.</p>
+
+    <h2>Conta e sincronização em nuvem (opcional)</h2>
+    <p>Criar conta é <strong>opcional</strong>. Quando você cria uma conta,
+    o EvoLift usa o provedor <strong>Supabase</strong> como backend de
+    autenticação e banco de dados na nuvem.</p>
+    <ul>
+      <li>Os únicos dados de identificação coletados na criação de conta
+        são <strong>e-mail e senha</strong>. A senha nunca é armazenada
+        pelo EvoLift — ela é processada diretamente pelo provedor de
+        autenticação.</li>
+      <li>Com uma conta autenticada, você pode enviar (Push) e receber
+        (Pull) dados entre o dispositivo e a nuvem, sempre por ação manual
+        sua — não há sincronização automática em segundo plano.</li>
+      <li>Os únicos tipos de dado que podem ser enviados à nuvem, quando
+        você aciona o envio manual, são: equipamentos pessoais, Espaços de
+        Treino, exercícios criados por você e seus músculos, treinos
+        planejados e seus exercícios, e sessões de treino já concluídas ou
+        descartadas (com seus exercícios e séries). Sessões ainda em
+        andamento nunca são enviadas.</li>
+      <li><strong>Nunca são enviados à nuvem:</strong> fotos corporais,
+        medidas e dados corporais, conquistas, metas, painel de evolução,
+        histórico calculado, ou qualquer conteúdo oficial do catálogo
+        (esse conteúdo é sempre gerado localmente a partir do próprio
+        aplicativo).</li>
+      <li>Toda comunicação com o Supabase ocorre por HTTPS. Como em
+        qualquer chamada de rede, o provedor de infraestrutura pode
+        registrar metadados técnicos padrão de conexão (como endereço IP),
+        fora do controle do EvoLift.</li>
+    </ul>
+    <div class="callout">
+      Você pode excluir sua conta e todos os dados enviados à nuvem a
+      qualquer momento. Veja a página
+      <a href="../delete-account/">Excluir conta e dados</a>.
+    </div>
+
+    <h2>Fotos corporais</h2>
+    <p>Fotos corporais são opcionais e <strong>permanecem sempre no
+    dispositivo</strong>, nunca são enviadas à nuvem. Câmera e galeria só
+    são acessadas quando você escolhe adicionar uma foto.</p>
+
+    <h2>Backup local</h2>
+    <p>O EvoLift permite criar manualmente um arquivo de backup
+    (<code>.evolift</code>) com seus dados locais. Esse arquivo não é
+    criptografado e não é enviado automaticamente a lugar nenhum — você
+    escolhe onde salvá-lo e é responsável por mantê-lo em local confiável.
+    O EvoLift também está configurado para não participar do backup e
+    restauração automáticos do sistema Android.</p>
+
+    <h2>Retenção de dados</h2>
+    <p>Dados enviados à nuvem ficam armazenados enquanto sua conta existir.
+    Cópias de segurança de rotina mantidas pelo provedor de infraestrutura
+    podem reter uma cópia residual por um curto período depois de uma
+    exclusão, antes de serem descartadas — isso não afeta o funcionamento
+    do aplicativo nem sua conta.</p>
+
+    <h2>Crianças</h2>
+    <p>O EvoLift não é direcionado a crianças. Se você tem menos que a
+    idade mínima exigida pela legislação do seu país para consentir com
+    este tipo de serviço, não crie uma conta.</p>
+
+    <h2>Alterações nesta política</h2>
+    <p>Esta página pode ser atualizada conforme o aplicativo evolui. A
+    data no topo indica a última revisão.</p>
+
+    <h2>Contato</h2>
+    <p>Dúvidas sobre privacidade, ou para exercer seus direitos sobre os
+    dados descritos aqui: <a href="mailto:deyvid.santos@gmail.com">deyvid.santos@gmail.com</a>.</p>
+
+    <footer>
+      <a href="../">EvoLift</a> · <a href="../delete-account/">Excluir conta e dados</a>
+    </footer>
+  </div>
+</body>
+</html>

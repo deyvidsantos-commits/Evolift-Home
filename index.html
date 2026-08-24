@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EvoLift — Privacidade e Conta</title>
+<meta name="robots" content="index,follow">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --text: #1c1f16;
+    --muted: #5b6152;
+    --border: #e4e1d6;
+    --accent: #4f8f14;
+    --accent-bg: #eef7e2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14160f;
+      --surface: #1b1e15;
+      --text: #ecefe3;
+      --muted: #a3aa93;
+      --border: #2c3023;
+      --accent: #9ee14f;
+      --accent-bg: #232c17;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .brand .dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+  h1 {
+    font-size: 1.9rem;
+    letter-spacing: -0.02em;
+    margin: 2rem 0 0.5rem;
+  }
+  p.lede {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-top: 0;
+  }
+  .cards {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+  a.card {
+    display: block;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--text);
+  }
+  a.card strong {
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 0.2rem;
+  }
+  a.card span {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  footer {
+    margin-top: 3rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="brand" href="./"><span class="dot"></span>EvoLift</a>
+    <h1>Privacidade e sua conta</h1>
+    <p class="lede">Páginas públicas de referência para o aplicativo EvoLift.</p>
+    <div class="cards">
+      <a class="card" href="privacy/">
+        <strong>Política de Privacidade</strong>
+        <span>O que o EvoLift coleta, como usa e onde seus dados ficam.</span>
+      </a>
+      <a class="card" href="delete-account/">
+        <strong>Excluir conta e dados</strong>
+        <span>Como pedir a exclusão permanente da sua conta e dos seus dados na nuvem.</span>
+      </a>
+    </div>
+    <footer>EvoLift · mantido por Deyvid Santos</footer>
+  </div>
+</body>
+</html>
