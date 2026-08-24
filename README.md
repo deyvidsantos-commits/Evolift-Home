@@ -1,61 +1,50 @@
-# EvoLift — Home
+# EvoLift
 
-Site público estático do aplicativo EvoLift (`com.evolift.app`), publicado
-via GitHub Pages a partir da raiz deste repositório (branch `main`).
+**Evolua todos os dias.**
 
-O código-fonte do aplicativo vive em um repositório separado e privado —
-este repositório contém **apenas** as páginas estáticas abaixo, para poder
-ser público sem expor código, documentação interna ou histórico de
-desenvolvimento.
+EvoLift é um aplicativo de treino offline-first: todos os dados de
+treino, histórico e evolução do usuário ficam armazenados no próprio
+aparelho, sem exigir conta ou conexão com a internet. Criar uma conta é
+opcional e serve apenas para sincronizar dados entre aparelhos, quando o
+usuário quiser.
 
-## Páginas publicadas
+Site: **https://deyvidsantos-commits.github.io/Evolift-Home/**
 
-| Página | URL |
-| --- | --- |
-| Home / divulgação | https://deyvidsantos-commits.github.io/Evolift-Home/ |
-| Política de Privacidade | https://deyvidsantos-commits.github.io/Evolift-Home/privacy/ |
-| Excluir conta e dados | https://deyvidsantos-commits.github.io/Evolift-Home/delete-account/ |
+## Proposta
 
-As duas últimas são exigidas pelo Google Play para apps com criação de
-conta (Política de Privacidade + URL pública de exclusão de conta/dados).
+A maioria dos apps de treino trata o acesso à internet e a criação de
+conta como pré-requisito. O EvoLift inverte essa prioridade: o app
+funciona por completo no modo offline, e a nuvem é um recurso adicional,
+não uma dependência.
 
-## Estrutura
+## Principais recursos
 
-```
-index.html                      página inicial (divulgação do app)
-privacy/index.html              Política de Privacidade
-delete-account/index.html       Excluir conta e dados
-assets/screenshots/*.svg        capturas de tela (placeholders — ver abaixo)
-```
+- **Funciona 100% offline** — treinos, histórico, progresso e dados
+  corporais ficam sempre no dispositivo.
+- **Compatibilidade de equipamento** — o usuário cadastra o que tem
+  disponível no seu espaço de treino, e o app identifica automaticamente
+  quais exercícios são compatíveis.
+- **Evolução acompanhada de verdade** — cargas, recordes pessoais e
+  histórico completo de cada treino já realizado.
+- **Conta opcional** — sincronização manual entre aparelhos via e-mail e
+  senha, sem exigir conexão constante nem coleta além do necessário.
 
-## Capturas de tela: placeholders a substituir
+## Privacidade
 
-As imagens em `assets/screenshots/` (`home.svg`, `workouts.svg`,
-`exercises.svg`, `progress.svg`) são placeholders gerados só para marcar
-onde cada print real vai entrar — não são screenshots de verdade.
+O EvoLift foi desenhado com privacidade como padrão, não como exceção:
+dados sensíveis (fotos corporais, medidas) nunca saem do dispositivo,
+mesmo com uma conta ativa. Detalhes completos e o mecanismo de exclusão
+de conta e dados:
 
-Para trocar por um print real:
+- [Política de Privacidade](https://deyvidsantos-commits.github.io/Evolift-Home/privacy/)
+- [Excluir conta e dados](https://deyvidsantos-commits.github.io/Evolift-Home/delete-account/)
 
-1. Tire o print no aparelho/emulador (proporção 1080×2400 encaixa sem
-   distorcer no molde de celular da página; outras proporções também
-   funcionam, só cortam para preencher o quadro).
-2. Salve como PNG ou JPG com o mesmo nome-base do placeholder que está
-   substituindo (ex.: `home.png` para o print da tela Início).
-3. Em `index.html`, atualize o(s) `<img src="assets/screenshots/home.svg">`
-   correspondente(s) para apontar para o novo arquivo
-   (`assets/screenshots/home.png`). A tela Início aparece duas vezes no
-   HTML (hero + galeria) — atualize as duas ocorrências.
-4. Delete o `.svg` antigo, se quiser.
+## Tecnologia
 
-## Conteúdo das páginas de privacidade
+Desenvolvido em Flutter, com persistência local em SQLite (via Drift) e
+sincronização opcional na nuvem via Supabase (autenticação e banco de
+dados). Foco atual em Android, com testes em iOS.
 
-O conteúdo de `privacy/` e `delete-account/` é derivado do aviso de
-privacidade técnico e factual do aplicativo
-(`docs/PRIVACY_NOTICE.md`, no repositório principal) e da implementação
-real da exclusão de conta (`delete_own_account()`). Responsável:
-**Deyvid Santos** (deyvid.santos@gmail.com).
+## Responsável
 
-## Publicar mudanças
-
-Qualquer commit na branch `main` é publicado automaticamente pelo GitHub
-Pages em 1–2 minutos.
+Deyvid Santos — deyvid.santos@gmail.com
