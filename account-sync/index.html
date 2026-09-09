@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Criar conta e sincronizar — EvoLift</title>
+<meta name="description" content="Como criar uma conta opcional no EvoLift e sincronizar manualmente seus dados entre aparelhos: o que é enviado, o que não é, e como funciona.">
+<meta name="robots" content="index,follow">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --text: #1c1f16;
+    --muted: #5b6152;
+    --border: #e4e1d6;
+    --accent: #4f8f14;
+    --accent-bg: #eef7e2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14160f;
+      --surface: #1b1e15;
+      --text: #ecefe3;
+      --muted: #a3aa93;
+      --border: #2c3023;
+      --accent: #9ee14f;
+      --accent-bg: #232c17;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 5rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .brand .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+  nav.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 0;
+  }
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.15rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .nav-links a { text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  @media (max-width: 600px) {
+    nav.top { flex-direction: column; align-items: flex-start; }
+  }
+  h1 {
+    font-size: 1.85rem;
+    letter-spacing: -0.02em;
+    margin: 1.75rem 0 0.35rem;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin: 2.2rem 0 0.6rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1rem;
+    margin: 1.4rem 0 0.5rem;
+  }
+  p, li { color: var(--text); }
+  ul, ol { padding-left: 1.2rem; }
+  li { margin-bottom: 0.4rem; }
+  .step {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    padding: 0.9rem 0;
+  }
+  .step .n {
+    flex: none;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  @media (max-width: 560px) {
+    .cols { grid-template-columns: 1fr; }
+  }
+  .col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+  }
+  .col h3 { margin-top: 0; }
+  .col.yes h3 { color: var(--accent); }
+  .callout {
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    font-size: 0.95rem;
+    margin: 1.5rem 0;
+  }
+  .warning {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.92rem;
+    margin: 0.6rem 0;
+  }
+  a { color: var(--accent); }
+  code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.05rem 0.35rem;
+    font-size: 0.9em;
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+  <nav class="top">
+    <a class="brand" href="../"><span class="dot"></span>EvoLift</a>
+    <div class="nav-links">
+      <a href="../">Início</a>
+      <a href="../support/">Ajuda e suporte</a>
+      <a href="../faq/">Perguntas frequentes</a>
+      <a href="../privacy/">Privacidade</a>
+      <a href="../delete-account/">Excluir conta e dados</a>
+    </div>
+  </nav>
+  <div class="wrap">
+    <h1>Criar conta e sincronizar</h1>
+    <p class="meta">EvoLift · <code>com.evolift.app</code></p>
+
+    <p>A conta no EvoLift é <strong>opcional</strong>: o aplicativo pode
+    ser usado por completo sem ela. Criar uma conta permite sincronizar
+    alguns dados entre aparelhos, e a sincronização é sempre
+    <strong>manual</strong> — você decide quando enviar ou recuperar seus
+    dados, tocando em um botão. Não existe envio nem recebimento
+    automático em segundo plano.</p>
+
+    <h2>Criar uma conta</h2>
+    <div class="step">
+      <span class="n">1</span>
+      <p>Abra o EvoLift e vá em <strong>Ajustes</strong>.</p>
+    </div>
+    <div class="step">
+      <span class="n">2</span>
+      <p>Na seção <strong>Conta</strong>, toque em <strong>"Criar
+      conta"</strong>.</p>
+    </div>
+    <div class="step">
+      <span class="n">3</span>
+      <p>Informe um e-mail e uma senha.</p>
+    </div>
+    <div class="step">
+      <span class="n">4</span>
+      <p>Conclua o processo conforme apresentado pelo aplicativo na
+      tela.</p>
+    </div>
+    <p class="meta">Já tem conta? Na mesma seção há a opção de entrar, e,
+    caso tenha esquecido a senha, o link <strong>"Esqueci minha
+    senha"</strong> envia um e-mail de redefinição.</p>
+
+    <h2>Sincronizar dados</h2>
+    <p>Com uma conta autenticada, uma seção <strong>Sincronização</strong>
+    aparece em Ajustes, com o botão <strong>"Sincronizar agora"</strong>.
+    Ao tocar nele, o EvoLift faz duas coisas em sequência, na mesma
+    ação:</p>
+    <ul>
+      <li><strong>Enviar</strong> — os dados criados ou alterados neste
+        aparelho desde a última sincronização são enviados para a
+        nuvem.</li>
+      <li><strong>Receber</strong> — dados sincronizados a partir de
+        outros aparelhos com a mesma conta são recuperados para este
+        aparelho.</li>
+    </ul>
+    <p>Ao final, um resumo mostra quantos itens foram enviados e quantos
+    foram recebidos. Quando o mesmo dado foi alterado em aparelhos
+    diferentes, o EvoLift compara as datas de atualização. Em geral, a
+    versão mais recente é preservada. Se duas versões tiverem o mesmo
+    horário de atualização, mas conteúdos diferentes, a sincronização
+    identifica um conflito e não substitui os dados silenciosamente.</p>
+
+    <h3>O que é sincronizado</h3>
+    <div class="cols">
+      <div class="col yes">
+        <h3>É enviado à nuvem</h3>
+        <ul>
+          <li>Equipamentos pessoais</li>
+          <li>Espaços de Treino</li>
+          <li>Exercícios criados por você e seus músculos</li>
+          <li>Treinos planejados e seus exercícios</li>
+          <li>Sessões concluídas ou descartadas, com exercícios e séries</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Nunca é enviado</h3>
+        <ul>
+          <li>Fotos corporais</li>
+          <li>Medidas e dados corporais</li>
+          <li>Conquistas</li>
+          <li>Metas</li>
+          <li>Painel de evolução</li>
+          <li>Histórico calculado</li>
+          <li>Conteúdo oficial do catálogo</li>
+          <li>Sessões ainda em andamento</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Antes de sincronizar</h2>
+    <div class="warning">Mantenha uma conexão de internet estável durante
+    a sincronização.</div>
+    <div class="warning">Não feche o aplicativo enquanto a sincronização
+    estiver em andamento.</div>
+    <div class="warning">Antes de uma operação importante — como restaurar
+    um backup ou trocar de aparelho — considere criar um
+    <a href="../faq/">backup local</a> primeiro, como precaução
+    adicional.</div>
+
+    <div class="callout">
+      Quer saber quais dados ficam só no dispositivo mesmo com conta
+      ativa? Veja a <a href="../privacy/">Política de Privacidade</a>
+      completa.
+    </div>
+
+    <div class="callout">
+      <strong>Veja também:</strong>
+      <a href="../faq/">Perguntas frequentes</a> ·
+      <a href="../support/">Ajuda e suporte</a> ·
+      <a href="../privacy/">Política de Privacidade</a> ·
+      <a href="../delete-account/">Excluir conta e dados</a> ·
+      <a href="../">Página principal</a>
+    </div>
+
+    <footer>
+      <a href="../">EvoLift</a> ·
+      <a href="../support/">Ajuda e suporte</a> ·
+      <a href="../faq/">Perguntas frequentes</a> ·
+      <a href="../privacy/">Política de Privacidade</a> ·
+      <a href="../delete-account/">Excluir conta e dados</a> ·
+      <a href="mailto:deyvid.santos@gmail.com">deyvid.santos@gmail.com</a>
+    </footer>
+  </div>
+</body>
+</html>

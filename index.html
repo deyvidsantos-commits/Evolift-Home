@@ -77,12 +77,21 @@
   }
   .nav-links {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.35rem;
     font-size: 0.92rem;
     color: var(--muted);
   }
   .nav-links a { text-decoration: none; }
   .nav-links a:hover { color: var(--text); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  @media (max-width: 640px) {
+    nav.top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  }
 
   /* Hero */
   .hero {
@@ -258,10 +267,55 @@
     align-items: center;
     gap: 1rem;
   }
-  .footer-links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.35rem; font-size: 0.9rem; }
   .footer-links a { text-decoration: none; color: var(--muted); }
   .footer-links a:hover { color: var(--text); }
   .footer-fine { color: var(--muted); font-size: 0.85rem; }
+
+  /* Help section */
+  .help-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .help-box h2 { margin: 0 0 0.35rem; }
+  .help-box p { color: var(--muted); margin: 0; max-width: 42ch; }
+  .help-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .help-links a {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+  }
+  .help-links a:hover { border-color: var(--accent); color: var(--accent-strong); }
+  .help-links a.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+  }
+  .health-note {
+    color: var(--muted);
+    font-size: 0.85rem;
+    max-width: 70ch;
+    margin: 2rem auto 0;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
 </style>
 </head>
 <body>
@@ -271,6 +325,8 @@
     <div class="nav-links">
       <a href="#recursos">Recursos</a>
       <a href="#capturas">Capturas de tela</a>
+      <a href="support/">Ajuda e suporte</a>
+      <a href="faq/">Perguntas frequentes</a>
       <a href="privacy/">Privacidade</a>
     </div>
   </nav>
@@ -280,8 +336,9 @@
       <div>
         <span class="eyebrow">App de treino offline-first</span>
         <h1>Evolua todos os dias.</h1>
-        <p class="lede">Treinos, histórico e evolução no seu controle. O EvoLift funciona
-        inteiro offline — conta na nuvem é só se você quiser.</p>
+        <p class="lede">Treinos, histórico e evolução no seu controle. Os recursos
+        essenciais do EvoLift funcionam offline. A conexão é necessária apenas
+        para criar uma conta e sincronizar dados opcionalmente.</p>
         <span class="status-pill"><span class="pulse"></span>Em teste fechado no Google Play</span>
       </div>
       <div class="phone">
@@ -345,14 +402,36 @@
         </figure>
       </div>
     </section>
+
+    <section id="ajuda">
+      <div class="help-box">
+        <div>
+          <h2>Precisa de ajuda?</h2>
+          <p>Tire dúvidas sobre conta, sincronização, backup e privacidade.</p>
+        </div>
+        <div class="help-links">
+          <a class="primary" href="support/">Ajuda e suporte</a>
+          <a href="faq/">Perguntas frequentes</a>
+          <a href="account-sync/">Criar conta e sincronizar</a>
+        </div>
+      </div>
+    </section>
   </div>
+
+  <p class="health-note">O EvoLift é uma ferramenta de organização e
+  acompanhamento de treinos. Ele não substitui orientação médica,
+  diagnóstico, tratamento ou acompanhamento de profissionais de saúde e
+  educação física.</p>
 
   <footer>
     <div class="container footer-inner">
-      <div class="footer-fine">EvoLift · mantido por Deyvid Santos</div>
+      <div class="footer-fine"><a href="./">EvoLift</a> · mantido por Deyvid Santos</div>
       <div class="footer-links">
+        <a href="support/">Ajuda e suporte</a>
+        <a href="faq/">Perguntas frequentes</a>
         <a href="privacy/">Política de Privacidade</a>
         <a href="delete-account/">Excluir conta e dados</a>
+        <a href="mailto:deyvid.santos@gmail.com">deyvid.santos@gmail.com</a>
       </div>
     </div>
   </footer>

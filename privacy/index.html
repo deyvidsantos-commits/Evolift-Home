@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de Privacidade — EvoLift</title>
+<meta name="description" content="Política de Privacidade do EvoLift: o que coletamos, para que usamos, quais dados ficam só no aparelho e seus direitos sobre seus dados.">
 <meta name="robots" content="index,follow">
 <style>
   :root {
@@ -37,7 +38,7 @@
   .wrap {
     max-width: 680px;
     margin: 0 auto;
-    padding: 3rem 1.5rem 5rem;
+    padding: 1rem 1.5rem 5rem;
   }
   .brand {
     display: inline-flex;
@@ -55,6 +56,33 @@
     border-radius: 50%;
     background: var(--accent);
     display: inline-block;
+  }
+  nav.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 0;
+  }
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.15rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .nav-links a { text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  @media (max-width: 600px) {
+    nav.top { flex-direction: column; align-items: flex-start; }
   }
   h1 {
     font-size: 1.85rem;
@@ -103,15 +131,70 @@
 </style>
 </head>
 <body>
-  <div class="wrap">
+  <nav class="top">
     <a class="brand" href="../"><span class="dot"></span>EvoLift</a>
+    <div class="nav-links">
+      <a href="../">Início</a>
+      <a href="../support/">Ajuda e suporte</a>
+      <a href="../faq/">Perguntas frequentes</a>
+      <a href="../account-sync/">Criar conta e sincronizar</a>
+      <a href="../delete-account/">Excluir conta e dados</a>
+    </div>
+  </nav>
+  <div class="wrap">
     <h1>Política de Privacidade</h1>
-    <p class="meta">Última atualização: 24 de agosto de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
+    <p class="meta">Última atualização: 9 de setembro de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
 
     <p>Esta política descreve, de forma factual, o que o EvoLift coleta, como
     usa e onde seus dados ficam armazenados. O responsável pelo tratamento
     de dados descrito aqui é <strong>Deyvid Santos</strong>, desenvolvedor
     independente do EvoLift.</p>
+
+    <h2>Finalidades do tratamento</h2>
+    <p>Quando você opta por criar uma conta, os dados associados a ela são
+    usados exclusivamente para:</p>
+    <ul>
+      <li><strong>Autenticação</strong> — confirmar que é você acessando a
+        conta.</li>
+      <li><strong>Fornecer a sincronização opcional</strong> — enviar e
+        receber, a seu pedido, os dados descritos na seção seguinte.</li>
+      <li><strong>Manutenção da conta</strong> — manter seu cadastro
+        (e-mail e senha) e permitir redefinição de senha.</li>
+      <li><strong>Atendimento de solicitações</strong> — responder pedidos
+        de suporte, dúvidas ou exclusão de conta.</li>
+      <li><strong>Segurança do serviço</strong> — prevenir uso indevido do
+        backend de autenticação e sincronização.</li>
+    </ul>
+
+    <h2>Bases legais</h2>
+    <p>O tratamento de dados de conta e sincronização se apoia,
+    conforme a situação, nas seguintes bases legais:</p>
+    <ul>
+      <li><strong>Execução de serviço solicitado por você</strong> — ao
+        criar conta e acionar a sincronização manual, o tratamento é
+        necessário para prestar o serviço que você mesmo pediu.</li>
+      <li><strong>Cumprimento de obrigação legal</strong> — quando exigido
+        por lei aplicável (por exemplo, resposta a autoridades
+        competentes).</li>
+      <li><strong>Interesse legítimo limitado à segurança</strong> — uso
+        restrito à prevenção de abuso e proteção do serviço de
+        autenticação, sem finalidade de perfilamento ou publicidade.</li>
+      <li><strong>Consentimento</strong> — nos pontos em que a legislação
+        aplicável exigir consentimento explícito, ele é obtido antes do
+        tratamento correspondente.</li>
+    </ul>
+    <p class="muted">Os dados mantidos exclusivamente no dispositivo não
+    são transmitidos ao desenvolvedor, ao Supabase ou a outros serviços
+    externos pelo EvoLift.</p>
+
+    <h2>Prestadores de serviço</h2>
+    <p>O EvoLift utiliza o Supabase como prestador de autenticação e
+    infraestrutura de banco de dados para os recursos opcionais de conta
+    e sincronização. O processamento realizado por esse prestador segue
+    suas próprias condições, política de privacidade e infraestrutura
+    operacional — veja a
+    <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade do Supabase</a>
+    para detalhes técnicos sobre esse processamento.</p>
 
     <h2>Funcionamento local, por padrão</h2>
     <p>O EvoLift funciona localmente e offline por padrão, sem exigir conta.
@@ -128,9 +211,9 @@
     autenticação e banco de dados na nuvem.</p>
     <ul>
       <li>Os únicos dados de identificação coletados na criação de conta
-        são <strong>e-mail e senha</strong>. A senha nunca é armazenada
-        pelo EvoLift — ela é processada diretamente pelo provedor de
-        autenticação.</li>
+        são <strong>e-mail e senha</strong>. A credencial é transmitida de
+        forma protegida ao serviço de autenticação e não fica disponível
+        ao desenvolvedor em texto legível.</li>
       <li>Com uma conta autenticada, você pode enviar (Push) e receber
         (Pull) dados entre o dispositivo e a nuvem, sempre por ação manual
         sua — não há sincronização automática em segundo plano.</li>
@@ -169,12 +252,44 @@
     O EvoLift também está configurado para não participar do backup e
     restauração automáticos do sistema Android.</p>
 
+    <h2>Direitos do usuário</h2>
+    <p>Sobre os dados de conta e sincronização descritos nesta política,
+    você pode exercer, a qualquer momento, os seguintes direitos:</p>
+    <ul>
+      <li><strong>Confirmação e acesso</strong> — saber se tratamos seus
+        dados e quais são.</li>
+      <li><strong>Correção</strong> — corrigir dados incompletos ou
+        desatualizados.</li>
+      <li><strong>Exclusão</strong> — apagar sua conta e os dados
+        enviados à nuvem (veja <a href="../delete-account/">Excluir conta
+        e dados</a>).</li>
+      <li><strong>Portabilidade</strong>, quando aplicável — receber seus
+        dados em formato estruturado.</li>
+      <li><strong>Limitação do tratamento</strong>, nas hipóteses
+        previstas em lei.</li>
+      <li><strong>Oposição</strong>, quando aplicável, a um tratamento
+        específico.</li>
+      <li><strong>Retirada do consentimento</strong>, quando o tratamento
+        depender dele, sem afetar a licitude do que já foi feito antes.</li>
+      <li><strong>Reclamação à autoridade de proteção de dados
+        competente</strong>.</li>
+    </ul>
+    <p>Para exercer qualquer um desses direitos, entre em contato pelo
+    e-mail ao final desta página. Se você estiver em Portugal ou em outro
+    país da União Europeia, também pode apresentar reclamação à
+    <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer">CNPD — Comissão Nacional de Proteção de Dados</a>.
+    Se você estiver no Brasil, pode apresentar reclamação à
+    <a href="https://www.gov.br/anpd/" target="_blank" rel="noopener noreferrer">ANPD — Autoridade Nacional de Proteção de Dados</a>.</p>
+
     <h2>Retenção de dados</h2>
-    <p>Dados enviados à nuvem ficam armazenados enquanto sua conta existir.
-    Cópias de segurança de rotina mantidas pelo provedor de infraestrutura
-    podem reter uma cópia residual por um curto período depois de uma
-    exclusão, antes de serem descartadas — isso não afeta o funcionamento
-    do aplicativo nem sua conta.</p>
+    <p>Dados sincronizados permanecem armazenados enquanto sua conta
+    existir. Ao excluir a conta, ela e os dados associados são removidos
+    da aplicação. Cópias técnicas de segurança de rotina, mantidas pelo
+    provedor de infraestrutura, podem permanecer por um curto período
+    antes da eliminação definitiva — não temos um prazo exato
+    documentado para esse processo específico, e preferimos não afirmar
+    um número sem confirmação. Isso não afeta o funcionamento do
+    aplicativo nem da sua conta enquanto ativa.</p>
 
     <h2>Crianças</h2>
     <p>O EvoLift não é direcionado a crianças. Se você tem menos que a
@@ -189,8 +304,22 @@
     <p>Dúvidas sobre privacidade, ou para exercer seus direitos sobre os
     dados descritos aqui: <a href="mailto:deyvid.santos@gmail.com">deyvid.santos@gmail.com</a>.</p>
 
+    <div class="callout">
+      <strong>Veja também:</strong>
+      <a href="../support/">Ajuda e suporte</a> ·
+      <a href="../faq/">Perguntas frequentes</a> ·
+      <a href="../account-sync/">Criar conta e sincronizar</a> ·
+      <a href="../delete-account/">Excluir conta e dados</a> ·
+      <a href="../">Página principal</a>
+    </div>
+
     <footer>
-      <a href="../">EvoLift</a> · <a href="../delete-account/">Excluir conta e dados</a>
+      <a href="../">EvoLift</a> ·
+      <a href="../support/">Ajuda e suporte</a> ·
+      <a href="../faq/">Perguntas frequentes</a> ·
+      <a href="../privacy/">Política de Privacidade</a> ·
+      <a href="../delete-account/">Excluir conta e dados</a> ·
+      <a href="mailto:deyvid.santos@gmail.com">deyvid.santos@gmail.com</a>
     </footer>
   </div>
 </body>

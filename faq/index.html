@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perguntas frequentes — EvoLift</title>
+<meta name="description" content="Perguntas frequentes sobre o EvoLift: conta opcional, uso offline, sincronização manual, backup local e exclusão de dados.">
+<meta name="robots" content="index,follow">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --text: #1c1f16;
+    --muted: #5b6152;
+    --border: #e4e1d6;
+    --accent: #4f8f14;
+    --accent-bg: #eef7e2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14160f;
+      --surface: #1b1e15;
+      --text: #ecefe3;
+      --muted: #a3aa93;
+      --border: #2c3023;
+      --accent: #9ee14f;
+      --accent-bg: #232c17;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 5rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .brand .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+  nav.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 0;
+  }
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.15rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .nav-links a { text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  @media (max-width: 600px) {
+    nav.top { flex-direction: column; align-items: flex-start; }
+  }
+  h1 {
+    font-size: 1.85rem;
+    letter-spacing: -0.02em;
+    margin: 1.75rem 0 0.35rem;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-size: 1.1rem;
+    margin: 2.2rem 0 0.75rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border);
+  }
+  p, li { color: var(--text); }
+  a { color: var(--accent); }
+  code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.05rem 0.35rem;
+    font-size: 0.9em;
+  }
+  .callout {
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    font-size: 0.95rem;
+    margin: 1.5rem 0;
+  }
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.15rem 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.85rem 0;
+    list-style: none;
+    position: relative;
+    padding-right: 1.6rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  details[open] summary::after { content: "–"; }
+  details p {
+    margin: 0 0 1rem;
+    color: var(--muted);
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+  <nav class="top">
+    <a class="brand" href="../"><span class="dot"></span>EvoLift</a>
+    <div class="nav-links">
+      <a href="../">Início</a>
+      <a href="../support/">Ajuda e suporte</a>
+      <a href="../account-sync/">Criar conta e sincronizar</a>
+      <a href="../privacy/">Privacidade</a>
+      <a href="../delete-account/">Excluir conta e dados</a>
+    </div>
+  </nav>
+  <div class="wrap">
+    <h1>Perguntas frequentes</h1>
+    <p class="meta">EvoLift · <code>com.evolift.app</code></p>
+
+    <h2>Conta e uso offline</h2>
+
+    <details>
+      <summary>1. Preciso criar uma conta para usar o EvoLift?</summary>
+      <p>Não. A conta é opcional e serve apenas para sincronizar dados
+      entre aparelhos. Sem conta, o EvoLift funciona normalmente.</p>
+    </details>
+
+    <details>
+      <summary>2. O EvoLift funciona sem internet?</summary>
+      <p>Sim. Os recursos essenciais — treinos, histórico, evolução e
+      dados corporais — funcionam totalmente offline, sem exigir conexão
+      para o uso diário.</p>
+    </details>
+
+    <details>
+      <summary>3. Quais recursos precisam de conexão?</summary>
+      <p>Apenas criar conta, entrar, redefinir senha e sincronizar dados
+      manualmente. Nenhum outro recurso do dia a dia depende de
+      internet.</p>
+    </details>
+
+    <h2>Conta e senha</h2>
+
+    <details>
+      <summary>4. Como criar uma conta?</summary>
+      <p>Em <strong>Ajustes → Conta → Criar conta</strong>, informe um
+      e-mail e uma senha e conclua o processo conforme apresentado pelo
+      aplicativo.</p>
+    </details>
+
+    <details>
+      <summary>5. Como redefinir minha senha?</summary>
+      <p>Na tela de entrada da conta, toque em <strong>"Esqueci minha
+      senha"</strong> e informe seu e-mail. Você receberá um link de
+      redefinição de senha por e-mail.</p>
+    </details>
+
+    <h2>Sincronização</h2>
+
+    <details>
+      <summary>6. Como sincronizar meus dados?</summary>
+      <p>Com uma conta criada, vá em <strong>Ajustes → Sincronização</strong>
+      e toque em <strong>"Sincronizar agora"</strong>. Isso envia e recebe
+      seus dados em uma única ação.</p>
+    </details>
+
+    <details>
+      <summary>7. A sincronização acontece automaticamente?</summary>
+      <p>Não. A sincronização é sempre manual, iniciada por você ao tocar
+      em "Sincronizar agora". Não há sincronização automática em segundo
+      plano.</p>
+    </details>
+
+    <details>
+      <summary>8. Quais dados podem ser enviados para a nuvem?</summary>
+      <p>Equipamentos pessoais; Espaços de Treino; exercícios criados por
+      você e seus músculos; treinos planejados e seus exercícios; e
+      sessões de treino já concluídas ou descartadas, com seus exercícios
+      e séries.</p>
+    </details>
+
+    <details>
+      <summary>9. Quais dados permanecem somente no dispositivo?</summary>
+      <p>Fotos corporais, medidas e dados corporais, conquistas, metas,
+      painel de evolução, histórico calculado, o conteúdo oficial do
+      catálogo, e qualquer sessão ainda em andamento.</p>
+    </details>
+
+    <details>
+      <summary>10. Minhas fotos corporais são enviadas para a nuvem?</summary>
+      <p>Não. Fotos corporais permanecem sempre no dispositivo, mesmo com
+      uma conta ativa e sincronização em uso.</p>
+    </details>
+
+    <h2>Backup local</h2>
+
+    <details>
+      <summary>11. Como criar um backup local?</summary>
+      <p>Em <strong>Ajustes → Dados e backup</strong>, escolha a opção de
+      criar backup. Um arquivo <code>.evolift</code> com seus dados locais
+      será gerado no local que você escolher.</p>
+    </details>
+
+    <details>
+      <summary>12. O arquivo de backup é criptografado?</summary>
+      <p>Não. O arquivo <code>.evolift</code> não é criptografado. Guarde-o
+      em um local de sua confiança, já que você é responsável por
+      mantê-lo seguro.</p>
+    </details>
+
+    <details>
+      <summary>13. Como restaurar um backup?</summary>
+      <p>Na mesma tela de <strong>Ajustes → Dados e backup</strong>, use a
+      opção de restaurar backup e selecione o arquivo <code>.evolift</code>
+      salvo anteriormente. O arquivo é validado por completo antes de
+      qualquer alteração nos seus dados.</p>
+    </details>
+
+    <h2>Exclusão de conta</h2>
+
+    <details>
+      <summary>14. Como excluir minha conta?</summary>
+      <p>Pelo aplicativo, em <strong>Ajustes → Conta → Excluir conta</strong>,
+      ou por e-mail se você não tiver mais acesso ao app. Veja o passo a
+      passo completo em <a href="../delete-account/">Excluir conta e
+      dados</a>.</p>
+    </details>
+
+    <details>
+      <summary>15. Excluir a conta também apaga os dados salvos no dispositivo?</summary>
+      <p>Não. Dados locais — treinos, histórico, fotos corporais, medidas
+      e preferências — continuam no aparelho. Excluir a conta remove
+      apenas a conta e os dados que você enviou à nuvem.</p>
+    </details>
+
+    <details>
+      <summary>16. Como apagar os dados locais?</summary>
+      <p>Isso é feito separadamente da exclusão de conta: desinstale o
+      aplicativo, ou limpe os dados do EvoLift nas configurações do
+      Android (Configurações → Apps → EvoLift → Armazenamento → Limpar
+      dados).</p>
+    </details>
+
+    <h2>Privacidade e suporte</h2>
+
+    <details>
+      <summary>17. O EvoLift possui anúncios?</summary>
+      <p>Não. Atualmente o EvoLift não exibe anúncios.</p>
+    </details>
+
+    <details>
+      <summary>18. O EvoLift utiliza ferramentas de análise ou rastreamento?</summary>
+      <p>Não. Atualmente o EvoLift não usa analytics nem rastreadores de
+      publicidade.</p>
+    </details>
+
+    <details>
+      <summary>19. Como informar um problema?</summary>
+      <p>Envie um e-mail descrevendo o que aconteceu, de preferência com o
+      modelo do aparelho e a versão do Android. Veja
+      <a href="../support/">Ajuda e suporte</a> para o contato.</p>
+    </details>
+
+    <details>
+      <summary>20. O EvoLift substitui acompanhamento profissional?</summary>
+      <p>Não. O EvoLift é uma ferramenta de organização e acompanhamento
+      de treinos. Ele não substitui orientação médica, diagnóstico,
+      tratamento ou acompanhamento de profissionais de saúde e educação
+      física.</p>
+    </details>
+
+    <div class="callout">
+      <strong>Veja também:</strong>
+      <a href="../support/">Ajuda e suporte</a> ·
+      <a href="../account-sync/">Criar conta e sincronizar</a> ·
+      <a href="../delete-account/">Excluir conta e dados</a> ·
+      <a href="../privacy/">Política de Privacidade</a> ·
+      <a href="../">Página principal</a>
+    </div>
+
+    <footer>
+      <a href="../">EvoLift</a> ·
+      <a href="../support/">Ajuda e suporte</a> ·
+      <a href="../faq/">Perguntas frequentes</a> ·
+      <a href="../privacy/">Política de Privacidade</a> ·
+      <a href="../delete-account/">Excluir conta e dados</a> ·
+      <a href="mailto:deyvid.santos@gmail.com">deyvid.santos@gmail.com</a>
+    </footer>
+  </div>
+</body>
+</html>
