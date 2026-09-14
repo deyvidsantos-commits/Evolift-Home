@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de Privacidade — EvoLift</title>
-<meta name="description" content="Política de Privacidade do EvoLift: o que coletamos, para que usamos, quais dados ficam só no aparelho e seus direitos sobre seus dados.">
+<meta name="description" content="Política de Privacidade do EvoLift: o que coletamos, para que usamos, a diferença entre sincronização, backup local e Backup Premium na nuvem, e seus direitos sobre seus dados.">
 <meta name="robots" content="index,follow">
 <style>
   :root {
@@ -100,6 +100,10 @@
     padding-top: 0.4rem;
     border-top: 1px solid var(--border);
   }
+  h3 {
+    font-size: 1rem;
+    margin: 1.4rem 0 0.5rem;
+  }
   p, li { color: var(--text); }
   p.muted, li.muted { color: var(--muted); }
   ul { padding-left: 1.2rem; }
@@ -139,11 +143,12 @@
       <a href="../faq/">Perguntas frequentes</a>
       <a href="../account-sync/">Criar conta e sincronizar</a>
       <a href="../delete-account/">Excluir conta e dados</a>
+      <a href="../terms/">Termos de Uso</a>
     </div>
   </nav>
   <div class="wrap">
     <h1>Política de Privacidade</h1>
-    <p class="meta">Última atualização: 9 de setembro de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
+    <p class="meta">Última atualização: 14 de setembro de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
 
     <p>Esta política descreve, de forma factual, o que o EvoLift coleta, como
     usa e onde seus dados ficam armazenados. O responsável pelo tratamento
@@ -156,23 +161,25 @@
     <ul>
       <li><strong>Autenticação</strong> — confirmar que é você acessando a
         conta.</li>
-      <li><strong>Fornecer a sincronização opcional</strong> — enviar e
-        receber, a seu pedido, os dados descritos na seção seguinte.</li>
+      <li><strong>Fornecer a sincronização e o Backup Premium opcionais</strong>
+        — enviar e receber, a seu pedido, os dados descritos nas seções
+        seguintes.</li>
       <li><strong>Manutenção da conta</strong> — manter seu cadastro
         (e-mail e senha) e permitir redefinição de senha.</li>
       <li><strong>Atendimento de solicitações</strong> — responder pedidos
         de suporte, dúvidas ou exclusão de conta.</li>
       <li><strong>Segurança do serviço</strong> — prevenir uso indevido do
-        backend de autenticação e sincronização.</li>
+        backend de autenticação, sincronização e backup.</li>
     </ul>
 
     <h2>Bases legais</h2>
-    <p>O tratamento de dados de conta e sincronização se apoia,
-    conforme a situação, nas seguintes bases legais:</p>
+    <p>O tratamento de dados de conta, sincronização e Backup Premium se
+    apoia, conforme a situação, nas seguintes bases legais:</p>
     <ul>
       <li><strong>Execução de serviço solicitado por você</strong> — ao
-        criar conta e acionar a sincronização manual, o tratamento é
-        necessário para prestar o serviço que você mesmo pediu.</li>
+        criar conta e acionar manualmente a sincronização ou o envio de um
+        backup, o tratamento é necessário para prestar o serviço que você
+        mesmo pediu.</li>
       <li><strong>Cumprimento de obrigação legal</strong> — quando exigido
         por lei aplicável (por exemplo, resposta a autoridades
         competentes).</li>
@@ -188,24 +195,33 @@
     externos pelo EvoLift.</p>
 
     <h2>Prestadores de serviço</h2>
-    <p>O EvoLift utiliza o Supabase como prestador de autenticação e
-    infraestrutura de banco de dados para os recursos opcionais de conta
-    e sincronização. O processamento realizado por esse prestador segue
-    suas próprias condições, política de privacidade e infraestrutura
-    operacional — veja a
+    <p>O EvoLift utiliza o Supabase como prestador de autenticação,
+    sincronização e armazenamento do Backup Premium. O processamento
+    realizado por esse prestador segue suas próprias condições, política
+    de privacidade e infraestrutura operacional — veja a
     <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade do Supabase</a>
     para detalhes técnicos sobre esse processamento.</p>
+    <p>O uso do Supabase pelo EvoLift está sujeito aos Termos de Serviço do
+    Supabase, que incorporam por referência o
+    <a href="https://supabase.com/legal/dpa" target="_blank" rel="noopener noreferrer">Data Processing Addendum (DPA) do Supabase</a>
+    (identificado na própria página como "Version 1 — August 1, 2026").
+    Esse documento trata o Supabase como processador dos dados que o
+    EvoLift envia a ele, não como um terceiro com uso próprio sobre esse
+    conteúdo, e passa a valer automaticamente para qualquer conta ao aceitar
+    os Termos de Serviço do Supabase — não reproduzimos aqui o texto
+    integral do DPA; ele pode ser consultado na íntegra no link acima.</p>
 
     <h2>Funcionamento local, por padrão</h2>
     <p>O EvoLift funciona localmente e offline por padrão, sem exigir conta.
     Treinos, templates, sessões, histórico, preferências, Espaços de Treino,
-    metas, conquistas, evolução e dados corporais ficam armazenados apenas
-    no seu dispositivo, em um banco de dados local. Nenhum desses dados
-    exige conta ou conexão para ser criado, visto ou editado.</p>
+    metas, conquistas, evolução e dados corporais (incluindo fotos) ficam
+    armazenados apenas no seu dispositivo, em um banco de dados local.
+    Nenhum desses dados exige conta ou conexão para ser criado, visto ou
+    editado.</p>
     <p>O EvoLift não usa analytics, rastreadores de publicidade ou serviços
     de terceiros para relatório de falhas.</p>
 
-    <h2>Conta e sincronização em nuvem (opcional)</h2>
+    <h2>Sincronização em nuvem (opcional, grátis)</h2>
     <p>Criar conta é <strong>opcional</strong>. Quando você cria uma conta,
     o EvoLift usa o provedor <strong>Supabase</strong> como backend de
     autenticação e banco de dados na nuvem.</p>
@@ -217,44 +233,123 @@
       <li>Com uma conta autenticada, você pode enviar (Push) e receber
         (Pull) dados entre o dispositivo e a nuvem, sempre por ação manual
         sua — não há sincronização automática em segundo plano.</li>
-      <li>Os únicos tipos de dado que podem ser enviados à nuvem, quando
-        você aciona o envio manual, são: equipamentos pessoais, Espaços de
-        Treino, exercícios criados por você e seus músculos, treinos
-        planejados e seus exercícios, e sessões de treino já concluídas ou
-        descartadas (com seus exercícios e séries). Sessões ainda em
-        andamento nunca são enviadas.</li>
-      <li><strong>Nunca são enviados à nuvem:</strong> fotos corporais,
-        medidas e dados corporais, conquistas, metas, painel de evolução,
-        histórico calculado, ou qualquer conteúdo oficial do catálogo
-        (esse conteúdo é sempre gerado localmente a partir do próprio
-        aplicativo).</li>
+      <li>Os únicos tipos de dado que podem ser enviados à nuvem por este
+        mecanismo, quando você aciona o envio manual, são: equipamentos
+        pessoais, Espaços de Treino, exercícios criados por você e seus
+        músculos, treinos planejados e seus exercícios, e sessões de
+        treino já concluídas ou descartadas (com seus exercícios e
+        séries). Sessões ainda em andamento nunca são enviadas.</li>
+      <li><strong>Nunca são enviados à nuvem por este mecanismo:</strong>
+        fotos corporais, medidas e dados corporais, conquistas, metas,
+        painel de evolução, histórico calculado, ou qualquer conteúdo
+        oficial do catálogo (esse conteúdo é sempre gerado localmente a
+        partir do próprio aplicativo). <strong>Atenção:</strong> esta lista
+        vale apenas para a Sincronização. O Backup Premium na nuvem,
+        descrito a seguir, é um mecanismo diferente com um escopo de
+        dados diferente.</li>
       <li>Toda comunicação com o Supabase ocorre por HTTPS. Como em
         qualquer chamada de rede, o provedor de infraestrutura pode
         registrar metadados técnicos padrão de conexão (como endereço IP),
         fora do controle do EvoLift.</li>
     </ul>
+
+    <h2>Backup local (arquivo <code>.evolift</code>, grátis)</h2>
+    <p>Independente de conta, Sincronização ou Backup Premium: você pode
+    criar manualmente um arquivo de backup local (<code>.evolift</code>) a
+    qualquer momento, dentro do aplicativo.</p>
+    <ul>
+      <li>A criação é sempre manual. O EvoLift nunca cria nem envia esse
+        arquivo automaticamente, em nenhuma circunstância.</li>
+      <li>Esse arquivo <strong>pode conter fotos corporais</strong>, além
+        de nome, histórico, preferências e medidas. Ele não é
+        criptografado.</li>
+      <li>Esse arquivo permanece inteiramente sob seu controle: ele é
+        salvo no local que você escolher no seu próprio dispositivo (ou
+        onde você decidir movê-lo depois) e <strong>não é enviado a
+        nenhum servidor</strong> por este mecanismo. Guardá-lo em um local
+        confiável é sua responsabilidade.</li>
+      <li>O EvoLift também está configurado para não participar do backup
+        e restauração automáticos do sistema Android.</li>
+    </ul>
+
+    <h2>Backup Premium na nuvem (recurso da assinatura Premium)</h2>
+    <p>Este é um terceiro mecanismo, distinto da Sincronização e do Backup
+    local acima, disponível apenas para assinantes Premium.</p>
+    <ul>
+      <li><strong>O envio ocorre somente quando você toca em "Enviar
+        backup".</strong> Não existe upload automático, agendado ou
+        disparado por login, expiração ou qualquer outro evento.</li>
+      <li><strong>O que o arquivo pode incluir:</strong> perfil (nome de
+        exibição, meta, nível de experiência, idade, altura, peso), metas
+        mensais de treino, treinos e seus exercícios, histórico de
+        sessões e séries, medidas corporais (peso e circunferências),
+        Espaços de Treino e equipamentos, modelos de treino e conquistas
+        desbloqueadas, além de metadados técnicos necessários para
+        validar o próprio arquivo.</li>
+      <li><strong>O que o arquivo nunca inclui:</strong> fotos corporais
+        ou qualquer arquivo de foto — diferente do Backup local, que pode
+        conter fotos, o Backup Premium na nuvem nunca as inclui; também
+        nunca inclui seu e-mail ou senha, nem tokens de sessão,
+        credenciais ou qualquer segredo de autenticação. O caminho de
+        armazenamento do arquivo usa apenas um identificador interno da
+        sua conta, nunca seu e-mail.</li>
+      <li><strong>Restauração por mesclagem.</strong> Restaurar um backup
+        da nuvem apenas adiciona a seus dados atuais o que está no
+        arquivo — nada já existente no aparelho, incluindo suas fotos
+        corporais, é removido ou substituído.</li>
+      <li><strong>Limites técnicos atuais:</strong> até 15 MiB por
+        arquivo; existe apenas um backup na nuvem por conta — cada novo
+        envio substitui o anterior.</li>
+      <li><strong>O backup continua armazenado mesmo depois que sua
+        assinatura expira ou é cancelada.</strong> A expiração bloqueia
+        apenas novos envios e restaurações; ela nunca apaga
+        automaticamente o arquivo já enviado.</li>
+      <li><strong>Você pode excluir seu backup a qualquer momento, com ou
+        sem assinatura Premium ativa</strong> — excluir seus próprios
+        dados não depende de ser assinante. Excluir o backup na nuvem
+        nunca apaga nada no seu aparelho.</li>
+      <li><strong>Ao excluir sua conta, seu backup na nuvem também é
+        removido</strong>, como parte do mesmo processo.</li>
+    </ul>
+    <h3>Como o arquivo é protegido e onde ele fica</h3>
+    <ul>
+      <li>O envio e a restauração ocorrem por conexão segura (HTTPS).</li>
+      <li>O arquivo é armazenado em um espaço de armazenamento privado
+        (não público), acessível apenas pela sua própria conta.</li>
+      <li>O acesso para ler, enviar ou substituir o arquivo é restrito à
+        sua conta <strong>e</strong> ao seu estado de assinatura ser
+        elegível no momento; a exclusão do arquivo está disponível a
+        qualquer conta autenticada, mesmo sem assinatura ativa.</li>
+      <li>Os dados do Backup Premium são atualmente armazenados em
+        infraestrutura localizada na União Europeia (Irlanda). A
+        localização poderá ser atualizada em razão de mudanças técnicas
+        ou operacionais, com atualização desta Política quando
+        necessário.</li>
+      <li>Nenhum sistema é absolutamente seguro, e não prometemos
+        segurança absoluta.</li>
+    </ul>
+    <p class="muted">Não afirmamos que este arquivo é anônimo — ele pode
+    conter dados que identificam você indiretamente. Não afirmamos
+    criptografia do conteúdo além da conexão HTTPS de transporte já
+    descrita acima, nem garantimos disponibilidade ininterrupta deste
+    serviço.</p>
     <div class="callout">
-      Você pode excluir sua conta e todos os dados enviados à nuvem a
-      qualquer momento. Veja a página
+      Você pode excluir seu backup na nuvem, sua conta e todos os dados
+      enviados à nuvem a qualquer momento. Veja a página
       <a href="../delete-account/">Excluir conta e dados</a>.
     </div>
 
     <h2>Fotos corporais</h2>
-    <p>Fotos corporais são opcionais e <strong>permanecem sempre no
-    dispositivo</strong>, nunca são enviadas à nuvem. Câmera e galeria só
-    são acessadas quando você escolhe adicionar uma foto.</p>
-
-    <h2>Backup local</h2>
-    <p>O EvoLift permite criar manualmente um arquivo de backup
-    (<code>.evolift</code>) com seus dados locais. Esse arquivo não é
-    criptografado e não é enviado automaticamente a lugar nenhum — você
-    escolhe onde salvá-lo e é responsável por mantê-lo em local confiável.
-    O EvoLift também está configurado para não participar do backup e
-    restauração automáticos do sistema Android.</p>
+    <p>Fotos corporais são sempre opcionais. Elas podem estar incluídas em
+    um Backup local que você mesmo criar, mas <strong>nunca são
+    enviadas</strong> pela Sincronização nem pelo Backup Premium na
+    nuvem. Câmera e galeria só são acessadas quando você escolhe
+    adicionar uma foto.</p>
 
     <h2>Direitos do usuário</h2>
-    <p>Sobre os dados de conta e sincronização descritos nesta política,
-    você pode exercer, a qualquer momento, os seguintes direitos:</p>
+    <p>Sobre os dados de conta, sincronização e Backup Premium descritos
+    nesta política, você pode exercer, a qualquer momento, os seguintes
+    direitos:</p>
     <ul>
       <li><strong>Confirmação e acesso</strong> — saber se tratamos seus
         dados e quais são.</li>
@@ -282,14 +377,18 @@
     <a href="https://www.gov.br/anpd/" target="_blank" rel="noopener noreferrer">ANPD — Autoridade Nacional de Proteção de Dados</a>.</p>
 
     <h2>Retenção de dados</h2>
-    <p>Dados sincronizados permanecem armazenados enquanto sua conta
-    existir. Ao excluir a conta, ela e os dados associados são removidos
-    da aplicação. Cópias técnicas de segurança de rotina, mantidas pelo
-    provedor de infraestrutura, podem permanecer por um curto período
-    antes da eliminação definitiva — não temos um prazo exato
-    documentado para esse processo específico, e preferimos não afirmar
-    um número sem confirmação. Isso não afeta o funcionamento do
-    aplicativo nem da sua conta enquanto ativa.</p>
+    <p>Dados sincronizados e o Backup Premium na nuvem permanecem
+    armazenados enquanto sua conta existir, ou até que você os exclua
+    manualmente. A expiração ou o cancelamento da assinatura Premium
+    <strong>não apaga automaticamente</strong> um backup já enviado — ela
+    apenas bloqueia novos envios e restaurações até a assinatura ser
+    reativada. Ao excluir a conta, ela, os dados sincronizados e o Backup
+    Premium na nuvem são removidos da aplicação. Cópias técnicas de
+    segurança de rotina, mantidas pelo provedor de infraestrutura, podem
+    permanecer por um curto período antes da eliminação definitiva — não
+    temos um prazo exato documentado para esse processo específico, e
+    preferimos não afirmar um número sem confirmação. Isso não afeta o
+    funcionamento do aplicativo nem da sua conta enquanto ativa.</p>
 
     <h2>Crianças</h2>
     <p>O EvoLift não é direcionado a crianças. Se você tem menos que a
@@ -310,6 +409,7 @@
       <a href="../faq/">Perguntas frequentes</a> ·
       <a href="../account-sync/">Criar conta e sincronizar</a> ·
       <a href="../delete-account/">Excluir conta e dados</a> ·
+      <a href="../terms/">Termos de Uso</a> ·
       <a href="../">Página principal</a>
     </div>
 
@@ -318,6 +418,7 @@
       <a href="../support/">Ajuda e suporte</a> ·
       <a href="../faq/">Perguntas frequentes</a> ·
       <a href="../privacy/">Política de Privacidade</a> ·
+      <a href="../terms/">Termos de Uso</a> ·
       <a href="../delete-account/">Excluir conta e dados</a> ·
       <a href="mailto:deyvid.santos@gmail.com">deyvid.santos@gmail.com</a>
     </footer>
