@@ -47,4 +47,4 @@ dados). Foco atual em Android, com testes em iOS.
 
 ## Responsável
 
-Deyvid Santos — deyvid.santos@gmail.com
+Deyvid Santos — suporte.evolift@gmail.com
