@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Convite EvoLift</title>
+<meta name="robots" content="noindex,nofollow">
+
+<!--
+  Sprint 35, E4 — RASCUNHO, não publicado. Ver README.md nesta mesma pasta
+  para instruções de instalação futura, decisões pendentes (D-M1/D-M2) e
+  limites de hospedagem estática. Contrato de origem:
+  docs/SPRINT_35_INVITE_DELIVERY_DESIGN.md §23 (E3) e §24 (esta página).
+
+  Esta página NÃO consulta banco de dados nem API alguma. Ela só lê o
+  fragmento da própria URL (#t=<64 hex>), oferece um botão para abrir o
+  aplicativo e explica o que fazer quando o aplicativo não abre. Nenhum
+  convite é aceito, recusado ou modificado aqui — isso continua exigindo
+  sessão autenticada dentro do aplicativo.
+-->
+
+<!--
+  CSP via meta tag — defesa em profundidade apenas; um cabeçalho HTTP real,
+  configurado pela hospedagem, é mais forte e é documentado no README (a
+  tag <meta> não pode expressar X-Frame-Options nem frame-ancestors).
+  'unsafe-inline' é necessário aqui porque toda a página é um único
+  arquivo, sem script/estilo externo e sem nonce fixo entre implantações.
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+
+<style>
+  :root {
+    --bg: #f7f7f9;
+    --surface: #ffffff;
+    --text: #1c1d21;
+    --muted: #55575e;
+    --accent: #1f6f4a;
+    --accent-contrast: #ffffff;
+    --border: #e1e1e6;
+    --focus: #0b5fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16171a;
+      --surface: #1f2024;
+      --text: #f1f1f3;
+      --muted: #b7b8bd;
+      --accent: #4caf7d;
+      --accent-contrast: #0b1210;
+      --border: #303237;
+      --focus: #5b9cff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+  }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  main {
+    width: 100%;
+    max-width: 30rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+  }
+  h1 {
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem;
+  }
+  p { margin: 0 0 1rem; color: var(--muted); }
+  p:last-child { margin-bottom: 0; }
+  .status {
+    font-size: 1rem;
+    color: var(--text);
+  }
+  button.primary {
+    display: block;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0 0.5rem;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button.primary:focus-visible,
+  a:focus-visible,
+  button.link:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+  a.secondary, button.link {
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--accent);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  details {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .lang-switch {
+    text-align: right;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+  }
+  .lang-switch button {
+    background: none;
+    border: none;
+    padding: 0.25rem 0.4rem;
+    color: var(--muted);
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .lang-switch button[aria-current="true"] {
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  [hidden] { display: none !important; }
+  noscript p {
+    color: var(--text);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<main>
+  <noscript>
+    <h1>É necessário JavaScript</h1>
+    <p>
+      Esta página só consegue ler o convite com JavaScript habilitado no
+      navegador. Habilite o JavaScript e recarregue a página, ou abra este
+      mesmo link em outro navegador/aparelho com JavaScript ativo.
+    </p>
+    <p>
+      This page can only read the invite with JavaScript enabled in the
+      browser. Enable JavaScript and reload, or open this same link on
+      another browser/device with JavaScript on.
+    </p>
+  </noscript>
+
+  <div id="app" hidden>
+    <div class="lang-switch" role="group" aria-label="Idioma / Language">
+      <button type="button" id="lang-pt" aria-current="true">Português</button>
+      ·
+      <button type="button" id="lang-en">English</button>
+    </div>
+
+    <h1 id="title"></h1>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <button type="button" class="primary" id="open-app" hidden></button>
+    <p id="android-alt-wrap" hidden>
+      <button type="button" class="link" id="open-app-android-alt"></button>
+    </p>
+
+    <details id="no-app-details" hidden>
+      <summary id="no-app-summary"></summary>
+      <p id="no-app-body"></p>
+    </details>
+
+    <details id="desktop-details" hidden>
+      <summary id="desktop-summary"></summary>
+      <p id="desktop-body"></p>
+    </details>
+
+    <details id="ios-details" hidden>
+      <summary id="ios-summary"></summary>
+      <p id="ios-body"></p>
+    </details>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // ------------------------------------------------------------------
+  // 1) Leitura estrita do fragmento --- exclusivamente #t=<64 hex minúsculo>.
+  //    Qualquer outra coisa (parâmetro extra, "t" repetido, percent-encoding,
+  //    maiúsculas, tamanho errado, fragmento ausente) é tratada como link
+  //    não reconhecido, nunca como "convite indisponível" (essa distinção só
+  //    o servidor, dentro do app, pode fazer).
+  // ------------------------------------------------------------------
+  var STRICT_FRAGMENT = /^#t=([0-9a-f]{64})$/;
+
+  function extractToken(rawHash) {
+    if (typeof rawHash !== 'string') return null;
+    var m = STRICT_FRAGMENT.exec(rawHash);
+    return m ? m[1] : null;
+  }
+
+  // Captura antes de qualquer outra coisa tocar a URL.
+  var token = extractToken(window.location.hash);
+
+  // ------------------------------------------------------------------
+  // 2) Remove o fragmento da entrada atual do histórico assim que possível.
+  //    Isto NÃO apaga o link de qualquer lugar que já o tenha recebido
+  //    antes desta página carregar (app de mensagens, histórico do sistema,
+  //    proxy, etc.) --- apenas evita que ESTA entrada específica do
+  //    histórico do navegador continue mostrando o token na barra de
+  //    endereço/no histórico local a partir de agora.
+  // ------------------------------------------------------------------
+  try {
+    if (window.location.hash) {
+      var cleanUrl = window.location.pathname + window.location.search;
+      window.history.replaceState(null, document.title, cleanUrl);
+    }
+  } catch (e) {
+    // Alguns contextos (file://, sandbox restrito) podem recusar
+    // replaceState. O token já está só nesta variável local; nada além
+    // desta função tentou lê-lo da URL.
+  }
+
+  // O token nunca é escrito em atributo HTML, dataset, console, cookie ou
+  // armazenamento --- vive só nesta closure, e só até a página ser fechada
+  // ou recarregada.
+
+  // ------------------------------------------------------------------
+  // 3) Textos --- pt/en, sem nenhum sinal de bloqueio, sem horário/prazo
+  //    inventado, sem afirmar que o convite existe ou está disponível só
+  //    porque o formato do token é válido.
+  // ------------------------------------------------------------------
+  var STRINGS = {
+    pt: {
+      htmlLang: 'pt',
+      titleValid: 'Convite para o EvoLift',
+      titleInvalid: 'Link não reconhecido',
+      statusValid:
+        'Encontramos um convite neste link. Toque no botão abaixo para ' +
+        'abrir o aplicativo EvoLift e continuar por lá — a confirmação e o ' +
+        'aceite acontecem sempre dentro do app, nunca nesta página.',
+      statusInvalid:
+        'Não conseguimos reconhecer um convite válido neste link. Verifique ' +
+        'se você copiou o endereço completo, ou peça para a pessoa que te ' +
+        'convidou enviar o convite novamente.',
+      openApp: 'Abrir no EvoLift',
+      openAppAndroidAlt: 'O botão não abriu o app? Tente esta alternativa',
+      noAppSummary: 'Não tem o EvoLift instalado?',
+      noAppBody:
+        'Instale o aplicativo EvoLift (com.evolift.app) na loja do seu ' +
+        'aparelho Android e depois volte a abrir este mesmo link para ' +
+        'continuar o convite.',
+      desktopSummary: 'Está usando um computador?',
+      desktopBody:
+        'Este link abre o aplicativo em um aparelho Android com o EvoLift ' +
+        'instalado. Em um computador, o botão acima não tem efeito — abra ' +
+        'este mesmo link no seu celular.',
+      iosSummary: 'Usa iPhone/iPad?',
+      iosBody:
+        'O suporte a iOS ainda não está disponível nesta etapa. Assim que ' +
+        'estiver, este mesmo link passará a funcionar também no seu ' +
+        'aparelho.',
+    },
+    en: {
+      htmlLang: 'en',
+      titleValid: 'EvoLift invite',
+      titleInvalid: 'Link not recognized',
+      statusValid:
+        'We found an invite in this link. Tap the button below to open the ' +
+        'EvoLift app and continue there — confirming and accepting always ' +
+        'happens inside the app, never on this page.',
+      statusInvalid:
+        'We could not recognize a valid invite in this link. Check that you ' +
+        'copied the full address, or ask whoever invited you to send the ' +
+        'invite again.',
+      openApp: 'Open in EvoLift',
+      openAppAndroidAlt: "Button didn't open the app? Try this alternative",
+      noAppSummary: "Don't have EvoLift installed?",
+      noAppBody:
+        'Install the EvoLift app (com.evolift.app) from your Android ' +
+        'device’s store, then open this same link again to continue ' +
+        'the invite.',
+      desktopSummary: 'Using a computer?',
+      desktopBody:
+        'This link opens the app on an Android device with EvoLift ' +
+        'installed. On a computer the button above has no effect --- open ' +
+        'this same link on your phone instead.',
+      iosSummary: 'Using an iPhone/iPad?',
+      iosBody:
+        'iOS support is not available at this stage yet. Once it is, this ' +
+        'same link will also work on your device.',
+    }
+  };
+
+  // ------------------------------------------------------------------
+  // 4) Construção do destino --- nunca um destino arbitrário: sempre
+  //    exatamente com.evolift.app://personal-invite?t=<token>, ou, em
+  //    Android, a variante intent:// documentada em
+  //    docs/SPRINT_35_INVITE_DELIVERY_DESIGN.md §23.1. Nenhum outro
+  //    parâmetro, caminho ou host é montado a partir de entrada do usuário.
+  // ------------------------------------------------------------------
+  function isAndroid() {
+    return /Android/i.test(navigator.userAgent || '');
+  }
+
+  function buildPrimaryUri(t) {
+    return 'com.evolift.app://personal-invite?t=' + t;
+  }
+
+  function buildAndroidIntentUri(t) {
+    return 'intent://personal-invite?t=' + t +
+      '#Intent;scheme=com.evolift.app;package=com.evolift.app;end';
+  }
+
+  // ------------------------------------------------------------------
+  // 5) Render --- nada acontece sozinho: o link para o app só é acionado
+  //    por toque explícito no botão, nunca automaticamente, nunca por
+  //    temporizador.
+  // ------------------------------------------------------------------
+  var els = {
+    app: document.getElementById('app'),
+    title: document.getElementById('title'),
+    status: document.getElementById('status'),
+    openApp: document.getElementById('open-app'),
+    androidAltWrap: document.getElementById('android-alt-wrap'),
+    openAppAndroidAlt: document.getElementById('open-app-android-alt'),
+    noAppDetails: document.getElementById('no-app-details'),
+    noAppSummary: document.getElementById('no-app-summary'),
+    noAppBody: document.getElementById('no-app-body'),
+    desktopDetails: document.getElementById('desktop-details'),
+    desktopSummary: document.getElementById('desktop-summary'),
+    desktopBody: document.getElementById('desktop-body'),
+    iosDetails: document.getElementById('ios-details'),
+    iosSummary: document.getElementById('ios-summary'),
+    iosBody: document.getElementById('ios-body'),
+    langPt: document.getElementById('lang-pt'),
+    langEn: document.getElementById('lang-en')
+  };
+
+  function render(lang) {
+    var s = STRINGS[lang];
+    document.documentElement.lang = s.htmlLang;
+    els.langPt.setAttribute('aria-current', String(lang === 'pt'));
+    els.langEn.setAttribute('aria-current', String(lang === 'en'));
+
+    if (token) {
+      els.title.textContent = s.titleValid;
+      els.status.textContent = s.statusValid;
+      els.openApp.hidden = false;
+      els.openApp.textContent = s.openApp;
+
+      if (isAndroid()) {
+        els.androidAltWrap.hidden = false;
+        els.openAppAndroidAlt.textContent = s.openAppAndroidAlt;
+      } else {
+        els.androidAltWrap.hidden = true;
+      }
+
+      els.noAppDetails.hidden = false;
+      els.noAppSummary.textContent = s.noAppSummary;
+      els.noAppBody.textContent = s.noAppBody;
+
+      els.desktopDetails.hidden = false;
+      els.desktopSummary.textContent = s.desktopSummary;
+      els.desktopBody.textContent = s.desktopBody;
+
+      els.iosDetails.hidden = false;
+      els.iosSummary.textContent = s.iosSummary;
+      els.iosBody.textContent = s.iosBody;
+    } else {
+      els.title.textContent = s.titleInvalid;
+      els.status.textContent = s.statusInvalid;
+      els.openApp.hidden = true;
+      els.androidAltWrap.hidden = true;
+      els.noAppDetails.hidden = true;
+      els.desktopDetails.hidden = true;
+      els.iosDetails.hidden = true;
+    }
+  }
+
+  var currentLang = (navigator.language || '').toLowerCase().indexOf('pt') === 0
+    ? 'pt'
+    : 'en';
+
+  els.langPt.addEventListener('click', function () { currentLang = 'pt'; render(currentLang); });
+  els.langEn.addEventListener('click', function () { currentLang = 'en'; render(currentLang); });
+
+  els.openApp.addEventListener('click', function () {
+    if (!token) return; // nunca navega sem um token validado
+    window.location.href = buildPrimaryUri(token);
+  });
+  els.openAppAndroidAlt.addEventListener('click', function () {
+    if (!token) return;
+    window.location.href = buildAndroidIntentUri(token);
+  });
+
+  render(currentLang);
+  els.app.hidden = false;
+})();
+</script>
+</body>
+</html>
