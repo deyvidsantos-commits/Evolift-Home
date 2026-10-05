@@ -148,7 +148,7 @@
   </nav>
   <div class="wrap">
     <h1>Política de Privacidade</h1>
-    <p class="meta">Última atualização: 15 de setembro de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
+    <p class="meta">Última atualização: 5 de outubro de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
 
     <p>Esta política descreve, de forma factual, o que o EvoLift coleta, como
     usa e onde seus dados ficam armazenados. O responsável pelo tratamento
@@ -170,6 +170,16 @@
         de suporte, dúvidas ou exclusão de conta.</li>
       <li><strong>Segurança do serviço</strong> — prevenir uso indevido do
         backend de autenticação, sincronização e backup.</li>
+      <li><strong>Responder e personalizar, quando você usa os recursos
+        opcionais de inteligência artificial</strong> — interpretar a sua
+        pergunta, respondê-la a partir do seu próprio histórico de treino
+        e propor ajustes de treino para a sua confirmação.</li>
+      <li><strong>Segurança e moderação dos recursos de inteligência
+        artificial</strong> — verificar o conteúdo antes e depois da
+        geração e investigar respostas que você denunciar. Esta e a
+        finalidade anterior estão detalhadas na seção "Assistente e
+        sugestões de treino com inteligência artificial"; nenhuma delas
+        envolve publicidade direcionada ou venda de dados.</li>
     </ul>
 
     <h2>Bases legais</h2>
@@ -210,6 +220,40 @@
     conteúdo, e passa a valer automaticamente para qualquer conta ao aceitar
     os Termos de Serviço do Supabase — não reproduzimos aqui o texto
     integral do DPA; ele pode ser consultado na íntegra no link acima.</p>
+
+    <p>O <strong>Supabase</strong> também hospeda a infraestrutura dos
+    recursos de inteligência artificial e os controles de uso deles: as
+    chamadas ao provedor de IA partem sempre do nosso servidor (Edge
+    Functions do Supabase), nunca do seu aparelho, e é lá que ficam os
+    limites de uso e os registros técnicos descritos adiante.</p>
+
+    <p>Para os recursos opcionais de inteligência artificial, o EvoLift
+    utiliza a <strong>Groq, Inc.</strong> como provedor do modelo de
+    linguagem. A Groq <strong>processa as solicitações de IA como
+    operadora (processadora) por conta do EvoLift</strong>, segundo o
+    <a href="https://console.groq.com/docs/legal/services-agreement" target="_blank" rel="noopener noreferrer">Groq Services Agreement</a>
+    e o
+    <a href="https://console.groq.com/docs/legal/customer-data-processing-addendum" target="_blank" rel="noopener noreferrer">Customer Data Processing Addendum (DPA) da Groq</a>
+    (em vigor desde 15 de outubro de 2025). Esse DPA trata a Groq como
+    processadora dos dados que o EvoLift lhe envia, atuando conforme as
+    instruções do EvoLift — <strong>não como destinatária independente
+    desses dados</strong>. Não reproduzimos aqui o texto integral; ele
+    pode ser consultado na íntegra no link acima.</p>
+
+    <p>O DPA autoriza a Groq a recorrer a <strong>subprocessadores</strong>,
+    que ela mantém listados publicamente no
+    <a href="https://trust.groq.com/subprocessors" target="_blank" rel="noopener noreferrer">Trust Center da Groq</a>,
+    com aviso prévio de alterações e direito de objeção nos termos do
+    próprio DPA.</p>
+
+    <p><strong>Transferência internacional.</strong> O processamento
+    pode ocorrer <strong>nos Estados Unidos</strong> e em outros países
+    em que a Groq ou seus subprocessadores operem. Essa transferência é
+    amparada pelos mecanismos contratuais previstos no DPA, que
+    incorpora as Cláusulas Contratuais-Tipo da União Europeia e os
+    adendos equivalentes para o Reino Unido e a Suíça. Para detalhes,
+    consulte o DPA e a
+    <a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Política de Privacidade da Groq</a>.</p>
 
     <h2>Funcionamento local, por padrão</h2>
     <p>O EvoLift funciona localmente e offline por padrão, sem exigir conta.
@@ -411,6 +455,179 @@
     nuvem. Câmera e galeria só são acessadas quando você escolhe
     adicionar uma foto.</p>
 
+    <h2>Assistente e sugestões de treino com inteligência artificial
+    (opcional, recurso Premium em teste)</h2>
+    <p>O EvoLift oferece dois recursos opcionais apoiados em
+    inteligência artificial: o <strong>Assistente</strong>, com quem
+    você conversa sobre o seu próprio histórico de treino, e a
+    <strong>sugestão de treino</strong>, que propõe um rascunho de
+    treino. Ambos exigem assinatura Premium e estão em teste. Nenhum dos
+    dois é necessário para usar o aplicativo: criar, editar e executar
+    treinos manualmente continua gratuito e funciona sem internet.</p>
+
+    <p>O Assistente só funciona depois que você aceita um
+    <strong>consentimento específico</strong>, exibido dentro do
+    aplicativo. Antes desse aceite, nada é enviado. Você pode revogar o
+    consentimento a qualquer momento em Ajustes; o Assistente é
+    desativado e a conversa em andamento é apagada.</p>
+
+    <h3>O que é enviado ao provedor de IA</h3>
+    <p>Quando você usa um desses recursos, o aplicativo envia por HTTPS,
+    através das Edge Functions do Supabase, ao provedor de IA
+    <strong>Groq, Inc.</strong>:</p>
+    <ul>
+    <li><strong>A mensagem que você escreveu agora</strong> — apenas
+    a mensagem atual, limitada a 800 caracteres.</li>
+    <li><strong>O idioma</strong> da interface (português do Brasil ou
+    de Portugal).</li>
+    <li><strong>A intenção identificada e as restrições numéricas</strong>
+    da operação — por exemplo, que a pergunta é sobre a evolução de um
+    exercício, o período consultado (7, 30 ou 90 dias) e os limites
+    máximos de séries, repetições e tamanho de texto que a resposta
+    pode usar.</li>
+    <li><strong>As evidências do seu treino necessárias para responder
+    àquela pergunta específica</strong>, lidas no seu aparelho a partir
+    dos seus próprios registros salvos no EvoLift. Conforme a pergunta,
+    podem incluir: os <strong>nomes que você escolheu</strong> para os
+    seus treinos e exercícios; cargas; repetições; séries e faixas de
+    repetição; tempos de descanso; duração; volume; datas e horários
+    das sessões; contagens de exercícios e séries concluídas; séries
+    temporais de evolução de um exercício; e a composição de um modelo
+    de treino seu (quais exercícios, em que ordem, com que
+    prescrição).</li>
+    <li><strong>A lista técnica de identificadores de exercícios do
+    catálogo oficial compatíveis com o seu equipamento</strong>, quando
+    a operação pode propor um exercício novo. É uma lista de
+    identificadores do catálogo do aplicativo, igual para todos os
+    usuários com o mesmo equipamento — não é um dado seu.</li>
+    </ul>
+    <p>Essas evidências são montadas <strong>no seu aparelho</strong> e
+    passam por uma lista fechada de campos no nosso servidor, que recusa
+    qualquer campo fora dela antes de encaminhar ao provedor.</p>
+
+    <h3>O que nunca é enviado ao provedor de IA</h3>
+    <ul>
+    <li>Seu <strong>nome, e-mail ou identificador de conta</strong>. A
+    requisição não leva nenhum identificador seu.</li>
+    <li>Dados importados do <strong>Saúde Connect</strong>.</li>
+    <li><strong>Peso, medidas corporais ou fotos</strong>.</li>
+    <li><strong>Dados de alunos</strong> ou de qualquer outra pessoa.</li>
+    <li>A <strong>conversa completa ou mensagens anteriores</strong>.
+    Cada pergunta é enviada isoladamente; vai apenas a mensagem atual e
+    o conteúdo estritamente necessário descrito acima.</li>
+    <li><strong>Tokens de sessão (JWT), a chave da API ou qualquer
+    outro segredo.</strong> A credencial do provedor existe somente no
+    nosso servidor e nunca é embutida no aplicativo.</li>
+    </ul>
+
+    <h3>Finalidades</h3>
+    <p>O tratamento descrito nesta seção tem três finalidades, e
+    nenhuma outra:</p>
+    <ul>
+    <li><strong>Funcionalidade do aplicativo</strong> — responder à
+    sua pergunta a partir dos seus próprios registros.</li>
+    <li><strong>Personalização do acompanhamento</strong> — propor
+    ajustes e rascunhos de treino adequados ao seu histórico, objetivo e
+    equipamento.</li>
+    <li><strong>Segurança e moderação</strong> — verificar o conteúdo
+    antes e depois da geração, e investigar respostas que você
+    denunciar.</li>
+    </ul>
+    <p><strong>Não há publicidade direcionada e não há venda desses
+    dados.</strong> Eles não são usados para perfilamento publicitário,
+    não são cedidos a anunciantes e não são comercializados.</p>
+
+    <h3>Confirmação antes de alterar qualquer treino</h3>
+    <p>O que o provedor devolve é um texto de resposta ou uma
+    <strong>proposta</strong> de alteração em um treino seu.
+    <strong>Nenhuma alteração é aplicada sem a sua confirmação
+    explícita</strong>: a proposta é exibida para você revisar, editar
+    ou recusar. Recusar uma proposta não deixa nenhum resíduo no seu
+    treino. Há ainda limites de uso por conta, aplicados no nosso
+    servidor, tanto para controlar custo quanto para limitar o volume de
+    dados enviado.</p>
+
+    <h3>Conservação pela Groq — Zero Data Retention ativado</h3>
+    <p>A organização da Groq usada pelo EvoLift está com o
+    <strong>Global Zero Data Retention (ZDR) ativado</strong>, incluindo
+    as APIs de inferência (verificado em 5 de outubro de 2026). Na
+    prática, isso significa que:</p>
+    <ul>
+    <li>as <strong>entradas e as respostas</strong> das chamadas de
+    inferência <strong>não são registradas nem retidas pela
+    Groq</strong>;</li>
+    <li>a Groq mantém <strong>metadados operacionais de uso</strong> —
+    por exemplo, contagens e dados de faturamento —, que
+    <strong>não contêm as entradas nem as respostas</strong>;</li>
+    <li>pelo Services Agreement da Groq, ela <strong>não pode usar
+    entradas ou respostas para treinar ou ajustar modelos</strong> sem
+    autorização expressa do cliente, e <strong>o EvoLift não concedeu
+    essa autorização</strong>.</li>
+    </ul>
+
+    <h3>Conservação pelo EvoLift</h3>
+    <p>O EvoLift <strong>não guarda, no seu funcionamento normal, a sua
+    pergunta nem a resposta</strong> da conversa — nem no aparelho,
+    nem nos nossos servidores. A única exceção é a denúncia que você
+    mesmo decidir enviar, descrita na seção seguinte.</p>
+    <p>Guardamos, por chamada, apenas um <strong>registro técnico de
+    uso</strong>: contadores de unidades de texto processadas, custo
+    calculado, estado da operação, datas e um resumo criptográfico
+    irreversível da requisição. <strong>Esse registro não contém o
+    conteúdo</strong> da sua pergunta nem da resposta, e existe para
+    controle de custo e de limites. Ao excluir a sua conta, o
+    identificador é removido desse registro, que deixa de estar
+    associado a você; as linhas <strong>permanecem de forma
+    anonimizada</strong> como histórico técnico de consumo.</p>
+
+    <h3>Denunciar uma resposta — a única cópia que o EvoLift guarda</h3>
+    <p>Cada resposta do Assistente traz a ação <strong>Denunciar
+    resposta</strong>, dentro do próprio aplicativo. Essa é a única
+    situação em que o conteúdo de uma resposta é armazenado.</p>
+    <p><strong>Somente quando você escolhe denunciar e confirma</strong>,
+    são armazenados nos nossos servidores (Supabase):</p>
+    <ul>
+    <li>o <strong>texto da resposta denunciada</strong>;</li>
+    <li>a <strong>categoria ou motivo</strong> que você escolheu;</li>
+    <li>o <strong>comentário opcional</strong>, se você escrever um;</li>
+    <li>o <strong>idioma</strong> da sua interface;</li>
+    <li><strong>identificadores técnicos</strong> da interação e da
+    versão do recurso.</li>
+    </ul>
+    <p>Esses dados são conservados por <strong>até 90 dias</strong>,
+    para investigar a denúncia e melhorar os filtros de segurança, e
+    depois apagados automaticamente. Também são removidos se você
+    excluir a sua conta. A denúncia é visível apenas para você e para a
+    moderação do EvoLift; nenhum outro usuário a acessa, e ela não pode
+    ser alterada depois de enviada.</p>
+    <p><strong>A sua pergunta e o restante da conversa não são enviados
+    junto com a denúncia.</strong> Essa informação é exibida para você
+    <strong>antes</strong> de confirmar, na própria tela de denúncia.</p>
+    <p>Note a distinção: o Zero Data Retention da Groq se refere ao que
+    a <em>Groq</em> guarda, e ela não guarda as entradas nem as
+    respostas. <strong>A cópia da resposta que você decide denunciar é
+    guardada pelo EvoLift, no Supabase</strong> — é um armazenamento
+    nosso, iniciado por você, e o ZDR da Groq não o elimina.</p>
+
+    <h3>Verificação de segurança do conteúdo</h3>
+    <p>Antes de a sua pergunta seguir para a IA, e antes de a resposta
+    gerada chegar até você, o nosso servidor submete o texto a uma
+    verificação de segurança de conteúdo, feita pelo mesmo provedor e
+    sob as mesmas condições descritas acima, incluindo o Zero Data
+    Retention. Ela existe para bloquear conteúdo proibido — entre
+    outros, exploração infantil, conteúdo sexual, ódio, violência,
+    autolesão, atividades ilegais e instruções perigosas. Se a
+    verificação não puder ser concluída, a resposta é bloqueada por
+    precaução, em vez de liberada. Essa verificação não envia nada além
+    do texto já descrito nesta seção.</p>
+
+    <h3>Limites honestos deste recurso</h3>
+    <p>Respostas geradas por inteligência artificial podem conter erros.
+    O Assistente não substitui médico, fisioterapeuta ou profissional de
+    educação física, e não oferece diagnóstico, tratamento nem
+    orientação sobre dor ou lesão — perguntas desse tipo são recusadas
+    automaticamente antes de qualquer envio ao provedor.</p>
+
     <h2>Direitos do usuário</h2>
     <p>Sobre os dados de conta, sincronização e Backup Premium descritos
     nesta política, você pode exercer, a qualquer momento, os seguintes
@@ -461,6 +678,17 @@
     e limpar os dados locais do EvoLift, ou desinstalar o aplicativo.
     Excluir sua conta não afeta esses dados, pois eles nunca chegam a
     ser enviados a ela.</p>
+
+    <p>Os recursos de inteligência artificial seguem a retenção descrita
+    na seção própria, em três partes: o provedor de IA <strong>não
+    registra nem retém</strong> as entradas e respostas, por estar com o
+    Zero Data Retention ativado; o EvoLift <strong>não guarda a conversa</strong>,
+    e o registro técnico de uso que mantém — sem o conteúdo da pergunta
+    nem da resposta — deixa de estar associado à sua conta quando você a
+    exclui, permanecendo apenas de forma anonimizada como histórico de
+    consumo; e a <strong>denúncia que você mesmo enviar</strong> é
+    conservada por até 90 dias, ou removida antes disso se você excluir a
+    conta.</p>
 
     <h2>Crianças</h2>
     <p>O EvoLift não é direcionado a crianças. Se você tem menos que a
