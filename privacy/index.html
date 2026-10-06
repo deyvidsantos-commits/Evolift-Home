@@ -148,7 +148,7 @@
   </nav>
   <div class="wrap">
     <h1>Política de Privacidade</h1>
-    <p class="meta">Última atualização: 5 de outubro de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
+    <p class="meta">Última atualização: 6 de outubro de 2026 · Aplica-se ao aplicativo EvoLift (<code>com.evolift.app</code>)</p>
 
     <p>Esta política descreve, de forma factual, o que o EvoLift coleta, como
     usa e onde seus dados ficam armazenados. O responsável pelo tratamento
@@ -391,9 +391,10 @@
     evolução corporal — como sempre.</p>
     <p>Com o Premium, o EvoLift pode importar, do Saúde Connect (o
     gerenciador de dados de saúde do próprio Android), exatamente estes
-    seis tipos de dado: <strong>passos, distância, calorias totais
-    queimadas, frequência cardíaca, peso e sessões de exercício</strong>.
-    Nenhum outro tipo de dado do Saúde Connect é lido pelo EvoLift.</p>
+    oito tipos de dado: <strong>passos, distância, calorias totais
+    queimadas, frequência cardíaca, frequência cardíaca de repouso,
+    peso, sessões de exercício e sessões de sono</strong>. Nenhum outro
+    tipo de dado do Saúde Connect é lido pelo EvoLift.</p>
     <ul>
       <li><strong>A importação só acontece quando você toca em "Importar
         agora".</strong> Não existe leitura nem sincronização automática
@@ -418,7 +419,17 @@
         enviados ao Supabase, não fazem parte da Sincronização em
         nuvem e não entram no Backup local nem no Backup Premium na
         nuvem — nenhum dos mecanismos de nuvem já descritos nesta
-        página transmite dados de origem Saúde Connect.</li>
+        página transmite dados de origem Saúde Connect.
+        <strong>Existe uma única exceção, e ela depende de uma
+        autorização sua, caso a caso:</strong> se você pedir ao
+        Assistente para analisar os seus dados ao criar um treino e
+        marcar expressamente a categoria "Sono e recuperação", o
+        aplicativo envia ao provedor de IA <strong>um único número</strong>
+        — a sua média diária de sono dos últimos 14 dias, em minutos.
+        Nenhum outro dado do Saúde Connect é enviado em nenhuma
+        hipótese, e nada é enviado se você não marcar essa categoria.
+        A seção "Assistente e sugestões de treino com inteligência
+        artificial" descreve esse fluxo em detalhe.</li>
       <li>Dados de passos, distância, calorias ou frequência cardíaca
         que você mesmo <strong>digitar manualmente</strong> no Resumo
         Diário, e o peso que você mesmo digitar na evolução corporal,
@@ -434,19 +445,23 @@
         na própria tela de evolução corporal (uma nova importação pode
         trazê-lo de volta, se o dado ainda existir no Saúde Connect).
         Para os demais tipos (passos, distância, calorias totais,
-        frequência cardíaca e sessões de exercício), a exclusão
+        frequência cardíaca, frequência cardíaca de repouso, sessões de
+        exercício e sessões de sono), a exclusão
         individual ainda não está disponível nesta versão; a forma de
         remover esses dados locais hoje é desinstalar o aplicativo ou
         limpar os dados locais dele no seu dispositivo.</li>
     </ul>
     <p class="muted">O EvoLift não vende nenhum dado nem os utiliza
-    para publicidade — dos seis tipos importados pelo Saúde Connect,
+    para publicidade — dos oito tipos importados pelo Saúde Connect,
     passos, distância e calorias totais preenchem o Resumo Diário sem
-    que você precise digitá-los; a frequência cardíaca mostra a média
-    diária no mesmo lugar; o peso é adicionado ao seu histórico de
-    evolução corporal; e as sessões de exercício aparecem, somente
-    para consulta, em "Atividades importadas" — nunca viram
-    automaticamente um treino do EvoLift.</p>
+    que você precise digitá-los; a frequência cardíaca e a frequência
+    cardíaca de repouso mostram a média diária no mesmo lugar; o peso é
+    adicionado ao seu histórico de evolução corporal; as sessões de
+    sono alimentam o cartão "Sono" em Evolução › Saúde, com a duração
+    da noite e os estágios agregados por tipo; e as sessões de
+    exercício aparecem, somente para consulta, em "Atividades
+    importadas" — nunca viram automaticamente um treino do
+    EvoLift.</p>
 
     <h2>Fotos corporais</h2>
     <p>Fotos corporais são sempre opcionais. Elas podem estar incluídas em
@@ -509,8 +524,14 @@
     <ul>
     <li>Seu <strong>nome, e-mail ou identificador de conta</strong>. A
     requisição não leva nenhum identificador seu.</li>
-    <li>Dados importados do <strong>Saúde Connect</strong>.</li>
-    <li><strong>Peso, medidas corporais ou fotos</strong>.</li>
+    <li>Seus <strong>identificadores internos</strong> (identificador de
+    perfil, de registro corporal, de sessão de treino ou de qualquer
+    outra linha do banco).</li>
+    <li><strong>Fotos corporais</strong>, em nenhuma circunstância.</li>
+    <li><strong>Sua idade</strong> e a sua data de nascimento.</li>
+    <li><strong>Registros brutos</strong>: nenhuma sessão de treino
+    individual, nenhuma série, nenhum segmento isolado de sono, nenhuma
+    linha do seu histórico. Só os resumos numéricos descritos adiante.</li>
     <li><strong>Dados de alunos</strong> ou de qualquer outra pessoa.</li>
     <li>A <strong>conversa completa ou mensagens anteriores</strong>.
     Cada pergunta é enviada isoladamente; vai apenas a mensagem atual e
@@ -536,6 +557,79 @@
     <p><strong>Não há publicidade direcionada e não há venda desses
     dados.</strong> Eles não são usados para perfilamento publicitário,
     não são cedidos a anunciantes e não são comercializados.</p>
+
+    <h3>Criar um treino personalizado — quando você autoriza a
+    análise dos seus dados</h3>
+    <p>Você pode pedir ao Assistente que <strong>monte um treino
+    novo</strong> ("monte um treino focado nos glúteos"). Nesse caso,
+    o aplicativo usa o que você escreveu, o seu objetivo, o seu nível e
+    o seu local de treino, e pergunta o que faltar. Nada além disso é
+    lido.</p>
+
+    <p><strong>Se — e somente se — você pedir expressamente que os
+    seus próprios dados sejam analisados</strong> ("analise meus dados e
+    monte um treino"), o aplicativo mostra uma tela com as categorias
+    disponíveis e <strong>nenhuma delas vem pré-marcada</strong>. Você
+    escolhe uma a uma. <strong>Antes dessa escolha, nada é lido:</strong>
+    nenhum dado corporal, nenhum histórico, nenhum dado do Saúde
+    Connect sai do seu aparelho, e nenhuma chamada é feita ao provedor
+    de IA.</p>
+
+    <p>Cada categoria que você marcar produz um <strong>resumo
+    numérico</strong> — nunca os registros em si:</p>
+    <ul>
+    <li><strong>Dados corporais:</strong> o seu peso e a sua altura
+    <strong>arredondados para números inteiros</strong> (por exemplo
+    "80 kg", "178 cm") e a tendência recente do seu peso (subindo,
+    estável, descendo ou desconhecida). As suas circunferências
+    (pescoço, cintura, braço, coxa e as demais) <strong>não são
+    enviadas</strong>.</li>
+    <li><strong>Histórico de treino:</strong> quantas sessões você fez
+    nos últimos 30 dias e a duração média delas.</li>
+    <li><strong>Evolução de cargas e volume:</strong> uma tendência do
+    seu volume de treino (progredindo, estável ou caindo), calculada
+    comparando os últimos 30 dias com os 60 anteriores.</li>
+    <li><strong>Sono e recuperação:</strong> a sua
+    <strong>média diária de sono dos últimos 14 dias</strong>, em
+    minutos — um único número. Esta é a única informação de origem
+    Saúde Connect que pode ser enviada, e só o total diário já
+    agregado: os horários de cada noite, os estágios do sono e cada
+    segmento individual <strong>permanecem no aparelho</strong>.
+    Frequência cardíaca, passos, distância, calorias e sessões de
+    exercício importadas <strong>nunca são enviadas</strong>.</li>
+    <li><strong>Limitações de movimento:</strong> as restrições que
+    você marcar numa lista fixa (por exemplo "evitar saltos", "evitar
+    carga axial na coluna"). São escolhas de uma lista, nunca um campo
+    de texto — e por isso <strong>não são, e não podem virar,
+    sintomas ou diagnósticos</strong>.</li>
+    </ul>
+
+    <p><strong>O que você não marcar não é lido.</strong> Se você marcar
+    apenas "histórico de treino", os repositórios de dados corporais e
+    de sono não chegam a ser consultados — não é um filtro aplicado
+    depois da leitura, é uma leitura que não acontece.</p>
+
+    <p><strong>Você também pode recusar.</strong> Recusar não encerra o
+    pedido: o Assistente oferece montar um treino usando apenas o que
+    você contou na conversa.</p>
+
+    <p><strong>Finalidade e duração.</strong> Essa autorização serve
+    exclusivamente para gerar aquela sugestão de treino. Não é usada
+    para publicidade, perfilamento ou qualquer outra finalidade. A
+    opção padrão é <strong>"somente para esta solicitação"</strong> —
+    ela vale para aquele pedido e não fica guardada. Se você escolher
+    manter a autorização, ela fica registrada <strong>apenas no seu
+    aparelho</strong>, vale por 90 dias e pode ser revogada a qualquer
+    momento em <strong>Ajustes › Privacidade da IA</strong>. Revogar
+    impede novos usos e <strong>não apaga os treinos que você já
+    criou</strong>.</p>
+
+    <p><strong>O resultado é um rascunho.</strong> O treino gerado é
+    apresentado para você revisar, renomear, remover exercícios e
+    então confirmar. <strong>Nada é salvo antes da sua confirmação</strong>
+    — cancelar, voltar ou fechar o aplicativo não cria nenhum treino.
+    A sugestão pode conter erros e <strong>não é diagnóstico nem
+    orientação médica</strong>.</p>
 
     <h3>Confirmação antes de alterar qualquer treino</h3>
     <p>O que o provedor devolve é um texto de resposta ou uma
