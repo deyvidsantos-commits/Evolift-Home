@@ -108,6 +108,22 @@
     outline: 3px solid var(--focus);
     outline-offset: 2px;
   }
+  /* Link para a loja dentro de "Não tem o EvoLift instalado?".
+     48px de altura mínima para a área de toque; o mesmo :focus-visible
+     das demais âncoras já cobre o foco de teclado. */
+  a.store-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    margin-top: 0.75rem;
+    padding: 0.7rem 1.2rem;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  a.store-link:hover { filter: brightness(0.94); }
   a.secondary, button.link {
     display: inline-block;
     background: none;
@@ -188,6 +204,15 @@
     <details id="no-app-details" hidden>
       <summary id="no-app-summary"></summary>
       <p id="no-app-body"></p>
+      <!-- O endereço está escrito aqui, literal, e nunca é montado em
+           JavaScript. Só o RÓTULO vem da tabela de textos, por
+           textContent --- nenhum parâmetro da URL toca neste elemento,
+           nem como href, nem como HTML. -->
+      <a class="store-link"
+         id="no-app-store"
+         href="https://play.google.com/store/apps/details?id=com.evolift.app"
+         target="_blank"
+         rel="noopener noreferrer"></a>
     </details>
 
     <details id="desktop-details" hidden>
@@ -272,6 +297,8 @@
         'Instale o aplicativo EvoLift (com.evolift.app) na loja do seu ' +
         'aparelho Android e depois volte a abrir este mesmo link para ' +
         'continuar o convite.',
+      noAppStore: 'Baixar no Google Play',
+      noAppStoreLabel: 'Baixar o EvoLift no Google Play (abre em nova aba)',
       desktopSummary: 'Está usando um computador?',
       desktopBody:
         'Este link abre o aplicativo em um aparelho Android com o EvoLift ' +
@@ -302,6 +329,8 @@
         'Install the EvoLift app (com.evolift.app) from your Android ' +
         'device’s store, then open this same link again to continue ' +
         'the invite.',
+      noAppStore: 'Get it on Google Play',
+      noAppStoreLabel: 'Get EvoLift on Google Play (opens in a new tab)',
       desktopSummary: 'Using a computer?',
       desktopBody:
         'This link opens the app on an Android device with EvoLift ' +
@@ -349,6 +378,7 @@
     noAppDetails: document.getElementById('no-app-details'),
     noAppSummary: document.getElementById('no-app-summary'),
     noAppBody: document.getElementById('no-app-body'),
+    noAppStore: document.getElementById('no-app-store'),
     desktopDetails: document.getElementById('desktop-details'),
     desktopSummary: document.getElementById('desktop-summary'),
     desktopBody: document.getElementById('desktop-body'),
@@ -381,6 +411,8 @@
       els.noAppDetails.hidden = false;
       els.noAppSummary.textContent = s.noAppSummary;
       els.noAppBody.textContent = s.noAppBody;
+      els.noAppStore.textContent = s.noAppStore;
+      els.noAppStore.setAttribute('aria-label', s.noAppStoreLabel);
 
       els.desktopDetails.hidden = false;
       els.desktopSummary.textContent = s.desktopSummary;

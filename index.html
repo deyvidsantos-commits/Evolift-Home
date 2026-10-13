@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EvoLift — Evolua todos os dias</title>
-<meta name="description" content="EvoLift é um app de treino offline-first: seus dados ficam no aparelho, conta na nuvem é opcional.">
+<meta name="description" content="EvoLift é um app de treino offline-first, disponível no Google Play: seus dados ficam no aparelho, conta na nuvem é opcional.">
 <meta name="robots" content="index,follow">
 <style>
   :root {
@@ -84,13 +84,108 @@
   }
   .nav-links a { text-decoration: none; }
   .nav-links a:hover { color: var(--text); }
-  a:focus-visible, button:focus-visible {
+  a:focus-visible, button:focus-visible, summary:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
     border-radius: 4px;
   }
+
+  /* Menu de navegação --- nativo, com <details>/<summary>
+     ------------------------------------------------------------------
+     No desktop o <details> some do layout com `display: contents`: o
+     `.nav-links` passa a ser filho direto do flex de `nav.top`, e o
+     cabeçalho fica exatamente como era antes.
+
+     O atributo `open` está no HTML de propósito. Sem JavaScript, a
+     página se comporta como sempre se comportou --- todos os links
+     visíveis, inclusive no celular. É o script que FECHA o menu em
+     telas estreitas, nunca o contrário: assim o pior caso (JS
+     desligado) é o estado de hoje, não um cabeçalho quebrado em que os
+     links sumiram e nada os traz de volta. */
+  /* O <details> é um item de flex comum --- NÃO `display: contents`.
+     O Chrome mantém uma caixa interna própria para o conteúdo do
+     details (`::details-content`), então `display: contents` no
+     elemento não promove `.nav-links` a filho do flex da barra: o
+     painel ficava espremido como uma coluna ao lado da marca, e
+     `order`/`flex-basis` não tinham efeito nenhum. Com a caixa normal
+     aqui e o painel posicionado no celular, nada depende desse
+     detalhe de implementação. */
+  .menu { display: flex; align-items: center; }
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 44px;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    list-style: none;
+  }
+  /* O triângulo padrão sai nos dois motores; a seta abaixo é nossa. */
+  .menu-toggle::-webkit-details-marker { display: none; }
+  .menu-toggle::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px);
+    transition: transform 0.15s ease;
+  }
+  .menu[open] .menu-toggle::after {
+    transform: rotate(-135deg) translate(-1px, -1px);
+  }
+  .menu-toggle:hover { border-color: var(--accent); }
+
+  /* O rótulo curto do CTA existe só no celular. Esta linha precisa vir
+     ANTES do bloco de 640px: declarada depois, ela venceria por ser a
+     última e o botão ficaria sem texto nenhum --- os dois rótulos
+     ocultos ao mesmo tempo. Aconteceu exatamente isso na primeira
+     tentativa, e o botão virou um círculo verde vazio.
+     O leitor de tela não depende disto: o aria-label do link já traz o
+     texto completo nos dois tamanhos. */
+  .cta-curto { display: none; }
+
   @media (max-width: 640px) {
-    nav.top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    /* Uma linha só na barra: marca, Menu e o botão curto. O painel de
+       links sai do fluxo e cai logo abaixo da barra --- assim ele não
+       empurra o conteúdo nem disputa espaço na linha. */
+    nav.top {
+      position: relative;
+      gap: 0.6rem;
+      padding: 0.9rem 1.25rem;
+    }
+    .brand { margin-right: auto; }
+    .menu-toggle { display: inline-flex; }
+    .nav-links {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      z-index: 10;
+      flex-direction: column;
+      gap: 0;
+      padding: 0 1.25rem 0.5rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 12px 24px -16px rgba(0, 0, 0, 0.45);
+    }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links a:last-child { border-bottom: none; }
+
+    .nav-cta { padding: 0.5rem 0.95rem; font-size: 0.88rem; }
+    .cta-longo { display: none; }
+    .cta-curto { display: inline; }
   }
 
   /* Hero */
@@ -316,20 +411,132 @@
     padding: 0 1.5rem;
     text-align: center;
   }
+
+  /* Baixar no Google Play
+     ---------------------
+     Botao de texto na identidade do EvoLift, NAO uma reproducao do selo
+     oficial do Google Play: o projeto nao tem o recurso oficial, e
+     desenhar algo parecido seria usar a marca de outra empresa sem o
+     arquivo que ela distribui. Quando o selo oficial for baixado da
+     pagina de marca do Google, ele entra no lugar deste botao. */
+  /* Selo oficial do Google Play, baixado de
+     play.google.com/intl/pt-br/badges/ e servido LOCALMENTE
+     (assets/badges/). Nunca por hotlink.
+     ------------------------------------------------------------------
+     O PNG oficial tem 646x250 e já traz embutida a área de proteção
+     que as diretrizes de marca exigem --- a moldura transparente em
+     volta do retângulo preto. Por isso aqui não há padding, nem
+     border-radius, nem background, nem filtro: qualquer um dos quatro
+     alteraria o selo. Só a largura é definida; a altura vem da
+     proporção, intacta. */
+  .badge-play {
+    display: inline-block;
+    margin: 0 0 1.25rem;
+    border-radius: 8px;
+    line-height: 0;
+  }
+  .badge-play img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    display: block;
+  }
+  .cta-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    /* 48px de altura minima: area de toque confortavel no celular. */
+    min-height: 48px;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #0e0f0b;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+  }
+  .cta-play:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+  .cta-play .play-glyph { font-size: 1.1rem; line-height: 1; }
+  .cta-play--hero { margin: 0 0 1.25rem; }
+  /* No cabecalho escuro do hero, o verde claro do tema escuro sobre
+     texto quase preto mantem o contraste bem acima de 4.5:1 nos dois
+     temas --- por isso a cor do texto e fixa, e nao uma variavel. */
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+  .cta-note {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .hero .cta-note { color: var(--hero-muted); }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #0e0f0b;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--accent-strong); }
+  .cta-final {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  .cta-final h2 { margin: 0 0 0.5rem; }
+  .cta-final p { color: var(--muted); margin: 0 0 1.5rem; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "EvoLift",
+  "operatingSystem": "Android",
+  "applicationCategory": "HealthApplication",
+  "url": "https://deyvidsantos-commits.github.io/Evolift-Home/",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=com.evolift.app",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.evolift.app",
+  "identifier": "com.evolift.app",
+  "softwareVersion": "1.3.11",
+  "inLanguage": "pt-BR",
+  "author": { "@type": "Person", "name": "Deyvid Santos" }
+}
+</script>
 </head>
 <body>
 
   <nav class="top">
     <a class="brand" href="./"><span class="dot"></span>EvoLift</a>
-    <div class="nav-links">
-      <a href="#recursos">Recursos</a>
-      <a href="#capturas">Capturas de tela</a>
-      <a href="support/">Ajuda e suporte</a>
-      <a href="faq/">Perguntas frequentes</a>
-      <a href="privacy/">Privacidade</a>
-      <a href="terms/">Termos de Uso</a>
-    </div>
+    <details class="menu" id="menu-principal" open>
+      <summary class="menu-toggle">Menu</summary>
+      <div class="nav-links">
+        <a href="#recursos">Recursos</a>
+        <a href="#capturas">Capturas de tela</a>
+        <a href="support/">Ajuda e suporte</a>
+        <a href="faq/">Perguntas frequentes</a>
+        <a href="privacy/">Privacidade</a>
+        <a href="terms/">Termos de Uso</a>
+      </div>
+    </details>
+    <a class="nav-cta"
+       href="https://play.google.com/store/apps/details?id=com.evolift.app"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Baixar o EvoLift no Google Play (abre em nova aba)"><span
+       class="cta-longo">Baixar no Google Play</span><span
+       class="cta-curto" aria-hidden="true">Baixar</span></a>
   </nav>
 
   <div class="hero">
@@ -340,10 +547,22 @@
         <p class="lede">Treinos, histórico e evolução no seu controle. Os recursos
         essenciais do EvoLift funcionam offline. A conexão é necessária apenas
         para criar uma conta e sincronizar dados opcionalmente.</p>
-        <span class="status-pill"><span class="pulse"></span>Em teste fechado no Google Play</span>
+        <a class="badge-play"
+           href="https://play.google.com/store/apps/details?id=com.evolift.app"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Disponível no Google Play — baixar o EvoLift (abre em nova aba)">
+          <img src="assets/badges/google-play-badge-pt-br.png"
+               alt="Disponível no Google Play"
+               width="646" height="250"
+               decoding="async">
+        </a>
       </div>
       <div class="phone">
-        <img src="assets/screenshots/home.jpeg" alt="Captura de tela da Início do EvoLift">
+        <img src="assets/screenshots/home.jpeg"
+             alt="Tela Início do EvoLift mostrando o treino do dia Peito e Costas, com cinco exercícios e o botão Iniciar treino"
+             width="600" height="1333"
+             fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
@@ -386,21 +605,48 @@
       <p class="section-lede">Prints reais do aplicativo em uso.</p>
       <div class="gallery">
         <figure>
-          <div class="phone"><img src="assets/screenshots/home.jpeg" alt="Captura de tela da Início"></div>
+          <div class="phone"><img src="assets/screenshots/home.jpeg"
+                 alt="Tela Início do EvoLift com o treino do dia pronto para começar"
+                 width="600" height="1333"
+                 loading="lazy" decoding="async"></div>
           <figcaption>Início</figcaption>
         </figure>
         <figure>
-          <div class="phone"><img src="assets/screenshots/workouts.jpeg" alt="Captura de tela de Treinos"></div>
+          <div class="phone"><img src="assets/screenshots/workouts.jpeg"
+                 alt="Tela Treinos do EvoLift com a lista de treinos criados"
+                 width="600" height="1333"
+                 loading="lazy" decoding="async"></div>
           <figcaption>Treinos</figcaption>
         </figure>
         <figure>
-          <div class="phone"><img src="assets/screenshots/exercises.jpeg" alt="Captura de tela de Exercícios"></div>
+          <div class="phone"><img src="assets/screenshots/exercises.jpeg"
+                 alt="Catálogo de exercícios do EvoLift com fotos e filtro de compatibilidade"
+                 width="600" height="1333"
+                 loading="lazy" decoding="async"></div>
           <figcaption>Exercícios</figcaption>
         </figure>
         <figure>
-          <div class="phone"><img src="assets/screenshots/progress.jpeg" alt="Captura de tela de Evolução"></div>
+          <div class="phone"><img src="assets/screenshots/progress.jpeg"
+                 alt="Tela Evolução do EvoLift com conquistas e marcos do histórico"
+                 width="600" height="1333"
+                 loading="lazy" decoding="async"></div>
           <figcaption>Evolução</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section id="baixar">
+      <div class="cta-final">
+        <h2>Disponível no Google Play</h2>
+        <p>Instale o EvoLift e comece a treinar hoje. Funciona offline, e a
+        conta é opcional.</p>
+        <a class="cta-play"
+           href="https://play.google.com/store/apps/details?id=com.evolift.app"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Baixar o EvoLift no Google Play (abre em nova aba)">
+          <span class="play-glyph" aria-hidden="true">▶</span>Baixar no Google Play
+        </a>
       </div>
     </section>
 
@@ -437,6 +683,64 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // No celular, deixar o Google Play abrir normalmente.
+    //
+    // Os links da loja levam target="_blank" por causa do desktop, onde
+    // abrir a loja por cima da página seria perder a página. No celular
+    // isso atrapalha: a nova aba impede o navegador de entregar o link
+    // ao aplicativo do Google Play, e o usuário fica numa aba extra do
+    // navegador em vez de na loja.
+    //
+    // Em ponteiro grosso e sem hover --- a definição de toque que o
+    // próprio CSS usa --- o target sai. O rel continua, porque não
+    // custa nada e protege se o navegador decidir abrir numa aba mesmo
+    // assim.
+    //
+    // Sem biblioteca, sem rastreador, sem requisição: sete linhas que
+    // leem uma media query e apagam um atributo.
+    // Menu compacto no celular.
+    //
+    // O <details> nasce `open` no HTML para que, sem JavaScript, a
+    // página continue exatamente como era --- todos os links à vista.
+    // Aqui ele é FECHADO quando a tela é estreita, e reaberto quando
+    // deixa de ser. O estado acompanha a rotação do aparelho e o
+    // redimensionamento da janela.
+    //
+    // Ao tocar num link interno, o menu fecha: sem isso ele ficaria
+    // aberto por cima do conteúdo recém-rolado, que é um estado
+    // visualmente incoerente.
+    (function () {
+      var menu = document.getElementById('menu-principal');
+      if (!menu || !window.matchMedia) return;
+      var estreito = window.matchMedia('(max-width: 640px)');
+
+      function ajustar() { menu.open = !estreito.matches; }
+      ajustar();
+
+      if (estreito.addEventListener) {
+        estreito.addEventListener('change', ajustar);
+      } else if (estreito.addListener) {
+        estreito.addListener(ajustar); // navegadores antigos
+      }
+
+      menu.querySelectorAll('.nav-links a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (estreito.matches) menu.open = false;
+        });
+      });
+    })();
+
+    if (window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      document
+        .querySelectorAll('a[href^="https://play.google.com/"]')
+        .forEach(function (link) {
+          link.removeAttribute('target');
+          link.setAttribute('aria-label', 'Baixar o EvoLift no Google Play');
+        });
+    }
+  </script>
 
 </body>
 </html>
